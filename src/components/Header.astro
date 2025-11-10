@@ -1,0 +1,108 @@
+---
+import Logo from "../assets/logo.svg";
+---
+
+<header
+    class="sticky top-0 z-50 w-full bg-transparent backdrop-blur-md border-b border-base-300/20 shadow-sm text-white"
+>
+    <nav class="navbar w-full px-16 h-20">
+       
+        <div class="navbar-start">
+            <div class="flex items-center gap-1">
+                <img src={Logo.src} alt="Logo" class="h-12 w-auto object-contain" />
+            </div>
+        </div>
+
+      
+        <div class="navbar-end flex">
+            <ul
+                class="menu menu-horizontal gap-6 p-0 flex flex-nowrap nav-menu"
+            >
+                <li>
+                    <a
+                        href="#about"
+                        class="nav-link ts-Button font-normal uppercase tracking-wider transition-colors hover:text-primary"
+                    >
+                        À PROPOS
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="#experience"
+                        class="nav-link ts-Button font-normal uppercase tracking-wider transition-colors hover:text-primary"
+                    >
+                        PARCOURS
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="#skills"
+                        class="nav-link ts-Button font-normal uppercase tracking-wider transition-colors hover:text-primary"
+                    >
+                        COMPÉTENCES
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="#tools"
+                        class="nav-link ts-Button font-normal uppercase tracking-wider transition-colors hover:text-primary"
+                    >
+                        OUTILS
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="#projects"
+                        class="nav-link ts-Button font-normal uppercase tracking-wider transition-colors hover:text-primary"
+                    >
+                        PROJETS
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="#contact"
+                        class="nav-link ts-Button font-normal uppercase tracking-wider transition-colors hover:text-primary"
+                    >
+                        CONTACT
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<style>
+    .nav-menu {
+        position: relative;
+    }
+
+    .nav-link {
+        position: relative;
+        display: inline-block;
+        color: inherit;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .nav-link::after {
+        content: "";
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: currentColor;
+        transition:
+            width 0.3s ease,
+            left 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+        width: 100%;
+        background: rgb(255, 255, 255);
+    }
+
+    .nav-link:hover {
+        color: rgb(255, 255, 255);
+    }
+</style>
