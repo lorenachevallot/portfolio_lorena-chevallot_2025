@@ -1,0 +1,91 @@
+---
+// Composant Astro pour animation de dactylographie
+const words = ["MÉTHODIQUE", "CRÉATIVE", "STRATÉGIQUE"];
+---
+
+<div class="typing-container">
+    <span class="typing-text"></span>
+    <span class="cursor"></span>
+</div>
+
+<style>
+    .typing-container {
+        display: inline-flex;
+        align-items: baseline;
+        gap: 0.1em;
+    }
+
+    .typing-text {
+        font-family: inherit;
+        font-size: inherit;
+        font-weight: inherit;
+        color: inherit;
+    }
+
+    .cursor {
+        display: inline-block;
+        width: 2px;
+        height: 1em;
+        background-color: currentColor;
+        animation: blink 0.7s infinite;
+        margin-left: 2px;
+    }
+
+    @keyframes blink {
+        0%,
+        49% {
+            opacity: 1;
+        }
+        50%,
+        100% {
+            opacity: 0;
+        }
+    }
+</style>
+
+<script define:vars={{ words }}>
+    const typingText = document.querySelector(".typing-text");
+    let wordIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+
+    const typingSpeed = 100; // vitesse d'écriture en ms
+    const deletingSpeed = 50; // vitesse de suppression en ms
+    const delayBetweenWords = 1500; // délai avant de passer au mot suivant
+
+    function type() {
+        const currentWord = words[wordIndex];
+
+        if (isDeleting) {
+            // Phase de suppression
+            if (charIndex > 0) {
+                charIndex--;
+                typingText.textContent = currentWord.substring(0, charIndex);
+                setTimeout(type, deletingSpeed);
+            } else {
+                // Passage au mot suivant
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+                setTimeout(type, 300);
+            }
+        } else {
+            // Phase d'écriture
+            if (charIndex < currentWord.length) {
+                charIndex++;
+                typingText.textContent = currentWord.substring(0, charIndex);
+                setTimeout(type, typingSpeed);
+            } else {
+                // Début de la suppression après un délai
+                isDeleting = true;
+                setTimeout(type, delayBetweenWords);
+            }
+        }
+    }
+
+    // Démarrer l'animation quand le DOM est prêt
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", type);
+    } else {
+        type();
+    }
+</script>

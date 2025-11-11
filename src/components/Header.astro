@@ -3,17 +3,19 @@ import Logo from "../assets/logo.svg";
 ---
 
 <header
-    class="sticky top-0 z-50 w-full bg-transparent backdrop-blur-md border-b border-base-300/20 shadow-sm text-white"
+    class="fixed top-0 left-0 z-50 w-full bg-transparent backdrop-blur-md border-b border-base-300/20 shadow-sm text-white"
 >
     <nav class="navbar w-full px-16 h-20">
-       
         <div class="navbar-start">
             <div class="flex items-center gap-1">
-                <img src={Logo.src} alt="Logo" class="h-12 w-auto object-contain" />
+                <img
+                    src={Logo.src}
+                    alt="Logo"
+                    class="h-12 w-auto object-contain"
+                />
             </div>
         </div>
 
-      
         <div class="navbar-end flex">
             <ul
                 class="menu menu-horizontal gap-6 p-0 flex flex-nowrap nav-menu"
