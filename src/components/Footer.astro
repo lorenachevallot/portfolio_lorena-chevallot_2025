@@ -1,0 +1,250 @@
+---
+import Behance from "../assets/behance.svg";
+import LinkedIn from "../assets/linkedin.svg";
+import Instagram from "../assets/instagram.svg";
+import Mail from "../assets/mail.svg";
+import fleur_droite from "../assets/fleur_droite.png";
+---
+
+<footer
+    class="relative text-white overflow-hidden min-h-screen flex items-start"
+>
+    <div class="container mx-auto px-8 pt-20 pb-32 relative z-10 w-full">
+        <!-- Titre principal en dehors de la grille -->
+        <h2
+            class="tracking-widest mb-20 main-title-font drop-shadow-figma text-white uppercase"
+            style="font-size: 72px !important; font-weight: 200 !important;"
+        >
+            CONTACTEZ-MOI
+        </h2>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <!-- Section gauche avec navigation -->
+            <div class="flex flex-col mt-16">
+                <!-- Navigation avec barre verticale -->
+                <div class="flex gap-6">
+                    <!-- Barre verticale avec effet néon -->
+                    <div class="w-0.5 bg-white self-stretch neon-bar"></div>
+
+                    <!-- Navigation -->
+                    <nav class="flex flex-col space-y-12 py-1">
+                        <a
+                            href="#apropos"
+                            class="ts-Button text-white font-light hover:text-secondary transition-colors duration-300"
+                            style="font-size: 24px !important;"
+                        >
+                            À PROPOS
+                        </a>
+                        <a
+                            href="#parcours"
+                            class="ts-Button text-white font-light hover:text-secondary transition-colors duration-300"
+                            style="font-size: 24px !important;"
+                        >
+                            PARCOURS
+                        </a>
+                        <a
+                            href="#competences"
+                            class="ts-Button text-white font-light hover:text-secondary transition-colors duration-300"
+                            style="font-size: 24px !important;"
+                        >
+                            COMPÉTENCES
+                        </a>
+                        <a
+                            href="#outils"
+                            class="ts-Button text-white font-light hover:text-secondary transition-colors duration-300"
+                            style="font-size: 24px !important;"
+                        >
+                            OUTILS
+                        </a>
+                        <a
+                            href="#projets"
+                            class="ts-Button text-white font-light hover:text-secondary transition-colors duration-300"
+                            style="font-size: 24px !important;"
+                        >
+                            PROJETS
+                        </a>
+                    </nav>
+                </div>
+            </div>
+
+            <!-- Section droite avec réseaux sociaux et boutons -->
+            <div class="flex flex-col items-center lg:items-start space-y-12">
+                <!-- Icônes réseaux sociaux -->
+                <div class="flex gap-12 justify-center lg:justify-start">
+                    <!-- Behance -->
+                    <a
+                        href="https://www.behance.net/votre-profil"
+                        target="_blank"
+                        class="flex flex-col items-center gap-2"
+                    >
+                        <img
+                            src={Behance.src}
+                            alt="Behance"
+                            class="w-20 h-20"
+                        />
+                        <span class="ts-Corp text-white text-sm">Behance</span>
+                    </a>
+
+                    <!-- Instagram -->
+                    <a
+                        href="https://www.instagram.com/votre-profil"
+                        target="_blank"
+                        class="flex flex-col items-center gap-2"
+                    >
+                        <img
+                            src={Instagram.src}
+                            alt="Instagram"
+                            class="w-20 h-20"
+                        />
+                        <span class="ts-Corp text-white text-sm">Instagram</span
+                        >
+                    </a>
+
+                    <!-- LinkedIn -->
+                    <a
+                        href="https://www.linkedin.com/in/votre-profil"
+                        target="_blank"
+                        class="flex flex-col items-center gap-2"
+                    >
+                        <img
+                            src={LinkedIn.src}
+                            alt="LinkedIn"
+                            class="w-20 h-20"
+                        />
+                        <span class="ts-Corp text-white text-sm">Linkedin</span>
+                    </a>
+
+                    <!-- Mail -->
+                    <a
+                        href="mailto:votre-email@example.com"
+                        class="flex flex-col items-center gap-2"
+                    >
+                        <img src={Mail.src} alt="Mail" class="w-20 h-20" />
+                        <span class="ts-Corp text-white text-sm">Mail</span>
+                    </a>
+                </div>
+
+                <!-- Boutons d'action -->
+                <div class="flex flex-col gap-4 w-full max-w-sm">
+                    <!-- Bouton Télécharger CV -->
+                    <a
+                        href="/cv.pdf"
+                        download
+                        class="btn bg-white text-black hover:bg-secondary hover:text-white transition-all duration-300 ts-Button uppercase flex items-center justify-between px-8 py-5 h-auto min-h-0"
+                        style="border-radius: 1.25rem !important;"
+                    >
+                        <span>TÉLÉCHARGER MON CV</span>
+                        <svg
+                            class="w-5 h-5"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </a>
+
+                    <!-- Bouton Me contacter -->
+                    <a
+                        href="#contact"
+                        class="btn bg-white text-black hover:bg-secondary hover:text-white transition-all duration-300 ts-Button uppercase flex items-center justify-between px-8 py-5 h-auto min-h-0"
+                        style="border-radius: 1.25rem !important;"
+                    >
+                        <span>ME CONTACTER</span>
+                        <svg
+                            class="w-5 h-5"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Copyright en bas de page aligné avec la barre -->
+    <div class="container mx-auto px-8 absolute bottom-4 left-0 right-0 z-20">
+        <p class="ts-Corp text-white text-sm">
+            Portfolio loréna chevallot - tous droits réservés
+        </p>
+    </div>
+
+    <!-- Fleur décorative en bas à droite avec ellipses -->
+    <div
+        class="absolute -bottom-32 right-0 w-[600px] h-[600px] pointer-events-none overflow-visible"
+    >
+        <!-- Ellipses colorées derrière la fleur -->
+        <!-- Ellipse bleu (en dessous) -->
+        <div
+            class="absolute rounded-full opacity-85"
+            style="right: -250px; bottom: -100px; width: 800px; height: 800px; background: radial-gradient(ellipse at center, #3600c9 0%, transparent 55%); filter: blur(30px); z-index: 1;"
+        >
+        </div>
+
+        <!-- Ellipse orange (au milieu) -->
+        <div
+            class="absolute rounded-full opacity-90"
+            style="right: -200px; bottom: -250px; width: 900px; height: 900px; background: radial-gradient(ellipse at center, #fd772b 0%, transparent 55%); filter: blur(35px); z-index: 2;"
+        >
+        </div>
+
+        <!-- Ellipse bleu supplémentaire (sous orange) -->
+        <div
+            class="absolute rounded-full opacity-80"
+            style="right: -220px; bottom: -300px; width: 750px; height: 750px; background: radial-gradient(ellipse at center, #3600c9 0%, transparent 55%); filter: blur(30px); z-index: 1.5;"
+        >
+        </div>
+
+        <!-- Ellipse rouge -->
+        <div
+            class="absolute rounded-full opacity-85"
+            style="right: -150px; bottom: 50px; width: 750px; height: 750px; background: radial-gradient(ellipse at center, #cc1d48 0%, transparent 55%); filter: blur(30px); z-index: 3;"
+        >
+        </div>
+
+        <!-- Ellipse bleu (par-dessus) -->
+        <div
+            class="absolute rounded-full opacity-80"
+            style="right: -250px; bottom: 150px; width: 700px; height: 700px; background: radial-gradient(ellipse at center, #3600c9 0%, transparent 55%); filter: blur(25px); z-index: 4;"
+        >
+        </div>
+
+        <!-- Fleur -->
+        <img
+            src={fleur_droite.src}
+            alt="Fleur décorative"
+            class="absolute right-0 bottom-0 w-full h-full object-cover opacity-100 z-10"
+        />
+    </div>
+</footer>
+
+<style>
+    .main-title-font {
+        font-family: var(--fonts-main-title-home, "Cormorant Unicase"), serif;
+    }
+
+    /* Drop shadow Figma : X:0, Y:4, Blur:26.7, Spread:0, Color:#FFFFFF */
+    .drop-shadow-figma {
+        filter: drop-shadow(0px 0px 70px rgba(255, 255, 255, 0.9))
+            drop-shadow(0px 0px 35px rgba(255, 255, 255, 0.8));
+    }
+
+    /* Effet néon sur la barre verticale */
+    .neon-bar {
+        box-shadow:
+            0 0 10px rgba(255, 255, 255, 0.8),
+            0 0 20px rgba(255, 255, 255, 0.6),
+            0 0 30px rgba(255, 255, 255, 0.4);
+    }
+</style>
