@@ -3,6 +3,7 @@ import Strat from "../assets/stat.svg";
 import roue from "../assets/roue.svg";
 import ordi from "../assets/ordi.svg";
 import design from "../assets/design.svg";
+import fleur_3 from "../assets/fleur_3.webp";
 
 const carouselData = [
     {
@@ -60,28 +61,87 @@ const carouselData = [
 ];
 ---
 
-<section
-    id="competences"
-    class="min-h-screen relative text-white py-20 flex items-center justify-center"
->
-    <div class="w-full max-w-7xl px-4 md:px-8 lg:px-16">
+<section id="competences" class="relative text-white py-20">
+    <!-- Décoration florale avec sphères statiques -->
+    <div
+        class="absolute right-0 bottom-16 w-[60dvw] h-[60dvw] md:w-[200px] md:h-[200px] lg:w-[280px] lg:h-[280px] pointer-events-none -z-10"
+    >
+        <!-- Sphères colorées statiques (derrière la fleur) - Plus grosses -->
+
+        <!-- Sphère bleue 1 (grande) - en haut décalée à droite et descendue -->
+        <div
+            class="absolute rounded-full opacity-80 pointer-events-none"
+            style="background: radial-gradient(ellipse at center, #3600c9 0%, transparent 55%); filter: blur(40px); z-index: 1; left: 50%; top: 50%; transform: translate(-35%, -65%); width: 525px; height: 525px;"
+        >
+        </div>
+
+        <!-- Sphère orange (très grande) - au centre -->
+        <div
+            class="absolute rounded-full opacity-85 pointer-events-none"
+            style="background: radial-gradient(ellipse at center, #fd772b 0%, transparent 55%); filter: blur(45px); z-index: 2; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 600px; height: 600px;"
+        >
+        </div>
+
+        <!-- Sphère rouge (grande) - en bas décalée à droite et remontée -->
+        <div
+            class="absolute rounded-full opacity-80 pointer-events-none"
+            style="background: radial-gradient(ellipse at center, #cc1d48 0%, transparent 55%); filter: blur(40px); z-index: 3; left: 50%; top: 50%; transform: translate(-35%, -35%); width: 525px; height: 525px;"
+        >
+        </div>
+
+        <!-- Sphère bleue 2 (grande) - décalée légèrement à droite du centre -->
+        <div
+            class="absolute rounded-full opacity-75 pointer-events-none"
+            style="background: radial-gradient(ellipse at center, #3600c9 0%, transparent 55%); filter: blur(40px); z-index: 1.5; left: 50%; top: 50%; transform: translate(-45%, -55%); width: 480px; height: 480px;"
+        >
+        </div>
+
+        <!-- Sphère bleue 3 (moyenne) - décalée légèrement à gauche du centre -->
+        <div
+            class="absolute rounded-full opacity-75 pointer-events-none"
+            style="background: radial-gradient(ellipse at center, #3600c9 0%, transparent 55%); filter: blur(35px); z-index: 4; left: 50%; top: 50%; transform: translate(-55%, -48%); width: 450px; height: 450px;"
+        >
+        </div>
+
+        <!-- Anneau blanc sans flou avec shadow - positionné en haut centre, moitié visible -->
+        <div
+            class="absolute rounded-full pointer-events-none border-4 border-white"
+            style="z-index: 5; left: 80%; top: 10%; transform: translate(-50%, -50%); width: 247.5px; height: 247.5px; box-shadow: 0 0 30px rgba(255, 255, 255, 0.8), 0 0 50px rgba(255, 255, 255, 0.5), inset 0 0 20px rgba(255, 255, 255, 0.3);"
+        >
+        </div>
+
+        <!-- Fleur (au-dessus de tout) -->
+        <img
+            src={fleur_3.src}
+            alt="Fleur décorative"
+            class="absolute right-0 -top-10 min-w-[30dvw] lg:min-w-[10dvw] min-h-[30dvw] lg:min-h-[10dvw] object-contain object-right opacity-100 z-10"
+        />
+    </div>
+
+    <div class="w-full px-4 md:px-8 lg:px-16">
         <!-- Titre de la section -->
-        <div class="text-center mb-12 lg:mb-16">
-            <h3
-                class="text-4xl md:text-5xl lg:text-6xl font-extralight uppercase tracking-widest text-white mb-4"
-            >
-                Compétences
-            </h3>
+        <div class="mb-8 lg:mb-10 w-full max-w-[700px] lg:max-w-[1200px]">
+            <h2>Compétences</h2>
+        </div>
+
+        <!-- Texte introductif avec animation -->
+        <div class="mb-12 lg:mb-16 w-full max-w-[700px] lg:max-w-[1200px]">
             <div
-                class="w-32 h-0.5 bg-white mx-auto"
+                class="h-0.5 bg-white mb-4 max-w-2xl"
                 style="box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6);"
             >
             </div>
+            <p class="animated-text max-w-2xl" data-animated="false">
+                Je donne du sens aux projets en construisant des messages
+                clairs, cohérents et porteurs de valeur. Chaque compétence est
+                un outil pour raconter une histoire, captiver une audience et
+                concrétiser une vision.
+            </p>
         </div>
 
         <!-- Carousel -->
         <div
-            class="w-full mx-auto px-4 py-6 text-white flex flex-col items-center rounded-2xl lg:flex-row lg:justify-between lg:px-8 lg:py-10 lg:gap-8 max-w-[700px] lg:max-w-[1200px]"
+            class="w-full py-6 text-white flex flex-col items-center rounded-2xl lg:flex-row lg:justify-between lg:py-10 lg:gap-8 max-w-[700px] lg:max-w-[1000px]"
         >
             <div class="w-full h-full flex justify-center items-center">
                 <div
@@ -109,9 +169,9 @@ const carouselData = [
                                             />
                                         )}
                                     </div>
-                                    <h2 class="text-xl sm:text-2xl lg:text-3xl font-bold text-white uppercase tracking-wide">
+                                    <h3 class="uppercase tracking-wide">
                                         {item.title}
-                                    </h2>
+                                    </h3>
                                 </div>
 
                                 {/* Texte en dessous */}
@@ -190,14 +250,6 @@ const carouselData = [
 </section>
 
 <style>
-    section {
-        background: linear-gradient(
-            180deg,
-            rgba(0, 0, 0, 0.95) 0%,
-            rgba(0, 0, 0, 0.98) 100%
-        );
-    }
-
     /* Animation de fade pour les slides */
     @keyframes fadeInUp {
         from {
@@ -387,4 +439,49 @@ const carouselData = [
             });
         });
     });
+
+    // Animation du texte introductif
+    const animatedText = document.querySelector(".animated-text");
+
+    if (animatedText) {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (
+                        entry.isIntersecting &&
+                        animatedText.getAttribute("data-animated") === "false"
+                    ) {
+                        animatedText.setAttribute("data-animated", "true");
+                    }
+                });
+            },
+            {
+                threshold: 0.5,
+            },
+        );
+
+        observer.observe(animatedText);
+    }
 </script>
+
+<style>
+    .animated-text {
+        background: linear-gradient(
+            to right,
+            var(--text-color, #ffffff) 0%,
+            var(--text-color, #ffffff) 50%,
+            #3600c9 50%,
+            #3600c9 100%
+        );
+        background-size: 200% 100%;
+        background-position: 100% 0;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        transition: background-position 1.5s ease-out;
+    }
+
+    .animated-text[data-animated="true"] {
+        background-position: 0% 0;
+    }
+</style>
