@@ -1,0 +1,150 @@
+---
+
+---
+
+<section
+    id="parcours"
+    class="min-h-screen relative text-white py-20 flex items-center"
+>
+    <div class="w-full">
+        <div class="px-4 md:px-16 lg:px-32 max-w-7xl mx-auto"></div>
+
+        <!-- Timeline Container -->
+        <div class="relative w-full py-16">
+            <!-- Ligne horizontale principale - toute la largeur de la page -->
+            <div
+                class="absolute top-1/2 left-0 right-0 w-full h-0.5 bg-white transform -translate-y-1/2"
+            >
+            </div>
+
+            <!-- Timeline Grid - 3 colonnes avec padding -->
+            <div class="px-4 md:px-16 lg:px-32 max-w-7xl mx-auto">
+                <div class="grid grid-cols-3 gap-8 relative">
+                    <!-- 2023 -->
+                    <div class="relative flex items-center">
+                        <!-- Point sur la ligne horizontale -->
+                        <div
+                            class="absolute left-0 top-1/2 transform -translate-y-1/2 z-10"
+                        >
+                            <div
+                                class="w-6 h-6 rounded-full bg-primary border-2 border-white shadow-[0_0_20px_rgba(54,0,201,1),0_0_40px_rgba(54,0,201,0.6)]"
+                            >
+                            </div>
+                        </div>
+
+                        <!-- Trait vertical vers le haut depuis le point -->
+                        <div
+                            class="absolute left-[11px] bottom-1/2 w-0.5 bg-white h-72 transform translate-y-3"
+                        >
+                        </div>
+
+                        <!-- Texte à droite du trait -->
+                        <div
+                            class="absolute left-8 bottom-1/2 transform -translate-y-[190px]"
+                        >
+                            <h3
+                                class="text-3xl font-bold mb-3 whitespace-nowrap"
+                            >
+                                2023
+                            </h3>
+                            <p
+                                class="text-sm font-light leading-relaxed whitespace-nowrap"
+                            >
+                                Obtention du certificat d'Aptitude<br />
+                                Théorique de Télépilote de drone
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 2024 -->
+                    <div class="relative flex items-center">
+                        <!-- Point sur la ligne horizontale -->
+                        <div
+                            class="absolute left-0 top-1/2 transform -translate-y-1/2 z-10"
+                        >
+                            <div
+                                class="w-6 h-6 rounded-full bg-primary border-2 border-white shadow-[0_0_20px_rgba(54,0,201,1),0_0_40px_rgba(54,0,201,0.6)]"
+                            >
+                            </div>
+                        </div>
+
+                        <!-- Trait vertical vers le bas depuis le point -->
+                        <div
+                            class="absolute left-[11px] top-1/2 w-0.5 bg-white h-72 transform -translate-y-3"
+                        >
+                        </div>
+
+                        <!-- Texte à droite du trait -->
+                        <div
+                            class="absolute left-5 top-1/2 transform translate-y-3"
+                        >
+                            <h3
+                                class="text-3xl font-bold mb-3 whitespace-nowrap"
+                            >
+                                2024
+                            </h3>
+                            <p
+                                class="text-sm font-light leading-relaxed whitespace-nowrap"
+                            >
+                                Baccalauréat général (mention B)<br />
+                                Spécialités : Sciences éco & cinéma audiovisuel
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 2025 -->
+                    <div class="relative flex items-center">
+                        <!-- Point sur la ligne horizontale -->
+                        <div
+                            class="absolute left-0 top-1/2 transform -translate-y-1/2 z-10"
+                        >
+                            <div
+                                class="w-6 h-6 rounded-full bg-primary border-2 border-white shadow-[0_0_20px_rgba(54,0,201,1),0_0_40px_rgba(54,0,201,0.6)]"
+                            >
+                            </div>
+                        </div>
+
+                        <!-- Trait vertical vers le haut depuis le point -->
+                        <div
+                            class="absolute left-[11px] bottom-1/2 w-0.5 bg-white h-72 transform translate-y-3"
+                        >
+                        </div>
+
+                        <!-- Texte à droite du trait -->
+                        <div
+                            class="absolute left-8 bottom-1/2 transform -translate-y-[190px]"
+                        >
+                            <h3
+                                class="text-3xl font-bold mb-3 whitespace-nowrap"
+                            >
+                                2025
+                            </h3>
+                            <p
+                                class="text-sm font-light leading-relaxed whitespace-nowrap"
+                            >
+                                Formation 1ère année BUT MMI,<br />
+                                IUT Nord Franche - Comté<br />
+                                Université Marie & Louis Pasteur
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Animation hover sur les points */
+    [class*="shadow-[0_0_20px"] {
+        transition: all 0.3s ease;
+    }
+
+    [class*="shadow-[0_0_20px"]:hover {
+        transform: scale(1.15);
+        box-shadow:
+            0 0 25px rgba(54, 0, 201, 1),
+            0 0 50px rgba(54, 0, 201, 0.8),
+            0 0 75px rgba(54, 0, 201, 0.5);
+    }
+</style>

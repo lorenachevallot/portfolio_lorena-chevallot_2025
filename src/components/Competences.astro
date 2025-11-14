@@ -1,0 +1,390 @@
+---
+import Strat from "../assets/stat.svg";
+import roue from "../assets/roue.svg";
+import ordi from "../assets/ordi.svg";
+import design from "../assets/design.svg";
+
+const carouselData = [
+    {
+        title: "Stratégie & storytelling",
+        shortTitle: "Stratégie",
+        description: `
+            <ul class="list-disc list-inside text-left space-y-4">
+                <li>Définition d'une ligne éditoriale claire et d'un ton adapté aux cibles</li>
+                <li>Storytelling orienté objectifs (marque, projet, association)</li>
+                <li>Choix pertinents des canaux et formats selon le message</li>
+            </ul>
+        `,
+        icon: Strat,
+        link: "/Stratégie & storytelling",
+    },
+    {
+        title: "Design & identité visuelle",
+        shortTitle: "Design",
+        description: `
+            <ul class="list-disc list-inside text-left space-y-4">
+                <li>Maquettes Figma et déclinaisons multi-supports, print & web</li>
+                <li>Création d'identités (logo, palette, typographies, usages)</li>
+                <li>Respect des codes graphiques et lisibilité</li>
+            </ul>
+        `,
+        icon: design,
+        link: "/design",
+    },
+    {
+        title: "Développement Web",
+        shortTitle: "Dev Web",
+        description: `
+            <ul class="list-disc list-inside text-left space-y-4">
+                <li>Création de sites web modernes et responsifs</li>
+                <li>Maîtrise des technologies front-end (HTML, CSS, JavaScript, React, Astro)</li>
+                <li>Développement back-end et intégration d'APIs</li>
+            </ul>
+        `,
+        icon: ordi,
+        link: "/developpement",
+    },
+    {
+        title: "Audiovisuel",
+        shortTitle: "Audiovisuel",
+        description: `
+            <ul class="list-disc list-inside text-left space-y-4">
+                <li>Réalisation et tournage de contenus vidéo professionnels</li>
+                <li>Montage et post-production (effets, colorimétrie, son)</li>
+                <li>Création de contenus engageants pour différentes plateformes</li>
+            </ul>
+        `,
+        icon: roue,
+        link: "/audiovisuel",
+    },
+];
+---
+
+<section
+    id="competences"
+    class="min-h-screen relative text-white py-20 flex items-center justify-center"
+>
+    <div class="w-full max-w-7xl px-4 md:px-8 lg:px-16">
+        <!-- Titre de la section -->
+        <div class="text-center mb-12 lg:mb-16">
+            <h3
+                class="text-4xl md:text-5xl lg:text-6xl font-extralight uppercase tracking-widest text-white mb-4"
+            >
+                Compétences
+            </h3>
+            <div
+                class="w-32 h-0.5 bg-white mx-auto"
+                style="box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6);"
+            >
+            </div>
+        </div>
+
+        <!-- Carousel -->
+        <div
+            class="w-full mx-auto px-4 py-6 text-white flex flex-col items-center rounded-2xl lg:flex-row lg:justify-between lg:px-8 lg:py-10 lg:gap-8 max-w-[700px] lg:max-w-[1200px]"
+        >
+            <div class="w-full h-full flex justify-center items-center">
+                <div
+                    class="carousel-main-card relative bg-gradient-to-br from-zinc-900/95 to-zinc-950/95 rounded-2xl backdrop-blur-md w-full flex flex-col items-start px-6 py-8 shadow-2xl border border-violet-500/20 h-[400px] sm:h-[420px] md:h-[450px] lg:h-[480px] overflow-y-auto transition-all duration-300"
+                    id="carousel-main"
+                >
+                    {
+                        carouselData.map((item, index) => (
+                            <div
+                                class={`carousel-slide w-full h-full flex flex-col gap-6 transition-all duration-500 ${index === 0 ? "opacity-100" : "opacity-0 hidden"}`}
+                                data-index={index}
+                            >
+                                {/* Titre et icône côte à côte */}
+                                <div class="flex items-center gap-4 sm:gap-6 lg:gap-8 w-full border-b border-white/10 pb-4 sm:pb-5 lg:pb-6 shrink-0">
+                                    <div class="carousel-icon flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 lg:w-20 lg:h-20 shrink-0">
+                                        {typeof item.icon === "string" ? (
+                                            <div class="text-4xl sm:text-5xl lg:text-6xl">
+                                                {item.icon}
+                                            </div>
+                                        ) : (
+                                            <img
+                                                src={item.icon.src}
+                                                alt={item.title}
+                                                class="w-full h-full object-contain"
+                                            />
+                                        )}
+                                    </div>
+                                    <h2 class="text-xl sm:text-2xl lg:text-3xl font-bold text-white uppercase tracking-wide">
+                                        {item.title}
+                                    </h2>
+                                </div>
+
+                                {/* Texte en dessous */}
+                                <div
+                                    class="carousel-content text-sm sm:text-base lg:text-lg text-zinc-100 leading-relaxed overflow-y-auto flex-1"
+                                    set:html={item.description}
+                                />
+                            </div>
+                        ))
+                    }
+                </div>
+            </div>
+
+            <div
+                class="h-6 flex items-center justify-center my-4 lg:my-0 lg:h-full lg:w-12"
+            >
+                <div
+                    class="flex items-center gap-4 lg:flex-col lg:justify-center lg:items-center"
+                >
+                    {
+                        carouselData.map((_, index) => (
+                            <button
+                                class={`carousel-dot w-3 h-3 lg:w-4 lg:h-4 rounded-full transition-all duration-300 hover:scale-125 ${index === 0 ? "bg-white shadow-lg shadow-violet-400/50" : "bg-white/20 hover:bg-white/40"}`}
+                                data-index={index}
+                                aria-label={`Voir ${carouselData[index].title}`}
+                            />
+                        ))
+                    }
+                </div>
+            </div>
+
+            <div
+                class="w-full flex justify-center items-stretch gap-4 sm:gap-6 lg:flex-col lg:gap-8 lg:h-full lg:w-1/4"
+            >
+                {
+                    [1, 2, 3].map((offset) => {
+                        const step = (0 + offset) % carouselData.length;
+                        return (
+                            <div
+                                class="carousel-preview bg-gradient-to-br from-zinc-900/95 to-zinc-950/95 rounded-2xl backdrop-blur-md w-full flex-1 flex items-center justify-center cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-violet-500/20 border border-transparent hover:border-violet-500/30 py-4 text-center"
+                                data-step={step}
+                            >
+                                <div class="flex flex-col h-full justify-start items-center gap-3 px-4 py-2 lg:p-4">
+                                    <div class="carousel-preview-icon">
+                                        {typeof carouselData[step].icon ===
+                                        "string" ? (
+                                            <div class="text-3xl lg:text-4xl opacity-90">
+                                                {carouselData[step].icon}
+                                            </div>
+                                        ) : (
+                                            <img
+                                                src={
+                                                    carouselData[step].icon.src
+                                                }
+                                                alt={carouselData[step].title}
+                                                class="h-8 lg:h-12 w-auto opacity-90"
+                                            />
+                                        )}
+                                    </div>
+                                    <span class="carousel-preview-title text-xs sm:text-sm text-zinc-200 font-medium">
+                                        <span class="lg:hidden">
+                                            {carouselData[step].shortTitle}
+                                        </span>
+                                        <span class="hidden lg:inline">
+                                            {carouselData[step].title}
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                        );
+                    })
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    section {
+        background: linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.95) 0%,
+            rgba(0, 0, 0, 0.98) 100%
+        );
+    }
+
+    /* Animation de fade pour les slides */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .carousel-slide:not(.hidden) {
+        animation: fadeInUp 0.5s ease-out;
+    }
+
+    /* Effet glow sur la carte principale */
+    .carousel-main-card {
+        box-shadow:
+            0 20px 60px rgba(0, 0, 0, 0.5),
+            0 0 40px rgba(139, 92, 246, 0.1);
+    }
+
+    .carousel-main-card:hover {
+        box-shadow:
+            0 25px 70px rgba(0, 0, 0, 0.6),
+            0 0 50px rgba(139, 92, 246, 0.15);
+    }
+
+    /* Drop shadow sur les icônes */
+    .carousel-icon img {
+        filter: drop-shadow(0 0 12px rgba(139, 92, 246, 0.4));
+    }
+
+    .carousel-preview-icon img {
+        filter: drop-shadow(0 0 8px rgba(139, 92, 246, 0.3));
+    }
+
+    /* Smooth scroll pour le contenu */
+    #carousel-main {
+        scroll-behavior: smooth;
+    }
+
+    /* Style pour les listes */
+    .carousel-content ul {
+        padding-left: 1.5rem;
+    }
+
+    .carousel-content li {
+        margin-bottom: 0.75rem;
+    }
+
+    .carousel-content li::marker {
+        color: rgba(139, 92, 246, 0.7);
+    }
+</style>
+
+<script>
+    let activeStep = 0;
+    const totalSteps = 4;
+
+    // Données des icônes (correspondant à carouselData)
+    const carouselIconsData = [
+        {
+            iconSrc: "/src/assets/stat.svg",
+            title: "Stratégie & storytelling",
+            shortTitle: "Stratégie",
+            isEmoji: false,
+        },
+        {
+            iconSrc: "/src/assets/design.svg",
+            title: "Design & identité visuelle",
+            shortTitle: "Design",
+            isEmoji: false,
+        },
+        {
+            iconSrc: "/src/assets/ordi.svg",
+            title: "Développement Web",
+            shortTitle: "Dev Web",
+            isEmoji: false,
+        },
+        {
+            iconSrc: "/src/assets/roue.svg",
+            title: "Audiovisuel",
+            shortTitle: "Audiovisuel",
+            isEmoji: false,
+        },
+    ];
+
+    function updateCarousel(newStep: number) {
+        activeStep = newStep;
+
+        // Cacher tous les slides avec animation
+        document.querySelectorAll(".carousel-slide").forEach((el) => {
+            el.classList.add("opacity-0");
+            setTimeout(() => {
+                el.classList.add("hidden");
+            }, 300);
+        });
+
+        // Afficher le slide actif avec animation
+        setTimeout(() => {
+            const activeSlide = document.querySelector(
+                `.carousel-slide[data-index="${activeStep}"]`,
+            );
+            if (activeSlide) {
+                activeSlide.classList.remove("hidden");
+                setTimeout(() => {
+                    activeSlide.classList.remove("opacity-0");
+                    activeSlide.classList.add("opacity-100");
+                }, 50);
+            }
+        }, 300);
+
+        // Mettre à jour les dots avec animation
+        document.querySelectorAll(".carousel-dot").forEach((dot, index) => {
+            if (index === activeStep) {
+                dot.classList.add(
+                    "bg-white",
+                    "shadow-lg",
+                    "shadow-violet-400/50",
+                    "scale-125",
+                );
+                dot.classList.remove("bg-white/20", "shadow-md");
+            } else {
+                dot.classList.remove(
+                    "bg-white",
+                    "shadow-lg",
+                    "shadow-violet-400/50",
+                    "scale-125",
+                );
+                dot.classList.add("bg-white/20");
+            }
+        });
+
+        // Mettre à jour les previews
+        document
+            .querySelectorAll(".carousel-preview")
+            .forEach((preview, idx) => {
+                const offset = idx + 1;
+                const step = (activeStep + offset) % totalSteps;
+                preview.setAttribute("data-step", step.toString());
+
+                const iconContainer = preview.querySelector(
+                    ".carousel-preview-icon",
+                );
+                const title = preview.querySelector(".carousel-preview-title");
+
+                const data = carouselIconsData[step];
+
+                if (iconContainer && data) {
+                    if (data.isEmoji) {
+                        iconContainer.innerHTML = `<div class="text-3xl lg:text-4xl opacity-90">${data.iconSrc}</div>`;
+                    } else {
+                        iconContainer.innerHTML = `<img src="${data.iconSrc}" alt="${data.title}" class="h-8 lg:h-12 w-auto opacity-90" />`;
+                    }
+                }
+
+                if (title && data) {
+                    title.innerHTML = `
+                        <span class="lg:hidden">${data.shortTitle}</span>
+                        <span class="hidden lg:inline">${data.title}</span>
+                    `;
+                }
+            });
+    }
+
+    // Auto-rotation
+    setInterval(() => {
+        updateCarousel((activeStep + 1) % totalSteps);
+    }, 5000);
+
+    // Gestion des clics sur les dots
+    document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll(".carousel-dot").forEach((dot) => {
+            dot.addEventListener("click", () => {
+                const index = parseInt(dot.getAttribute("data-index") || "0");
+                updateCarousel(index);
+            });
+        });
+
+        // Gestion des clics sur les previews
+        document.querySelectorAll(".carousel-preview").forEach((preview) => {
+            preview.addEventListener("click", () => {
+                const step = parseInt(preview.getAttribute("data-step") || "0");
+                updateCarousel(step);
+            });
+        });
+    });
+</script>

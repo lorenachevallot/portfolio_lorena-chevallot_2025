@@ -4,418 +4,385 @@
 html {
     scroll-behavior: smooth;
     background-color: #010101;
-    }
+    overflow-x: hidden;
+}
+
+body {
+    overflow-x: hidden;
+    max-width: 100vw;
+    scroll-behavior: smooth;
+}
 
 
-    @plugin "daisyui/theme" {
-        name: "portfolio-web";
-        default: true;
-        prefersdark: false;
-        color-scheme: "light";
+@plugin "daisyui/theme" {
+    name: "portfolio-web";
+    default: true;
+    prefersdark: false;
+    color-scheme: "light";
 
-        /* couleurs : primary = blue, secondary = orange, accent = red */
-        --color-base-100: #fafafa;
-        --color-base-200: #f4f4f4;
-        --color-base-300: #e9e9e9;
-        --color-base-content: #111111;
+    /* couleurs : primary = blue, secondary = orange, accent = red */
+    --color-base-100: #fafafa;
+    --color-base-200: #f4f4f4;
+    --color-base-300: #e9e9e9;
+    --color-base-content: #111111;
 
-        --color-primary: #3600c9;
-        /* colors-blue */
-        --color-primary-content: #ffffff;
+    --color-primary: #3600c9;
+    /* colors-blue */
+    --color-primary-content: #ffffff;
 
-        --color-secondary: #fd772b;
-        /* colors-orange */
-        --color-secondary-content: #ffffff;
+    --color-secondary: #fd772b;
+    /* colors-orange */
+    --color-secondary-content: #ffffff;
 
-        --color-accent: #cc1d48;
-        /* colors-red */
-        --color-accent-content: #ffffff;
+    --color-accent: #cc1d48;
+    /* colors-red */
+    --color-accent-content: #ffffff;
 
-        --color-neutral: #2f2f2f;
-        --color-neutral-content: #ffffff;
+    --color-neutral: #2f2f2f;
+    --color-neutral-content: #ffffff;
 
-        /* états */
-        --color-info: #2b8cff;
-        --color-info-content: #ffffff;
-        --color-success: #16a34a;
-        --color-success-content: #ffffff;
-        --color-warning: #f59e0b;
-        --color-warning-content: #111111;
-        --color-error: #dc2626;
-        --color-error-content: #ffffff;
+    /* états */
+    --color-info: #2b8cff;
+    --color-info-content: #ffffff;
+    --color-success: #16a34a;
+    --color-success-content: #ffffff;
+    --color-warning: #f59e0b;
+    --color-warning-content: #111111;
+    --color-error: #dc2626;
+    --color-error-content: #ffffff;
 
-        /* radius / sizes / border */
-        --radius-selector: 1rem;
-        --radius-field: 2rem;
-        --radius-box: 0.25rem;
-        --size-selector: 0.25rem;
-        --size-field: 0.25rem;
-        --border: 1px;
-        --depth: 0;
-        --noise: 0;
-        /* reduce button rounding: daisyUI uses --rounded-btn */
-        --rounded-btn: 0.375rem;
-        /* ~6px */
+    /* radius / sizes / border */
+    --radius-selector: 1rem;
+    --radius-field: 2rem;
+    --radius-box: 0.25rem;
+    --size-selector: 0.25rem;
+    --size-field: 0.25rem;
+    --border: 1px;
+    --depth: 0;
+    --noise: 0;
+    /* reduce button rounding: daisyUI uses --rounded-btn */
+    --rounded-btn: 0.375rem;
+    /* ~6px */
 
-        /* --- Variables typographiques générées depuis textStyles.json ---
-       format: --ts-{name}-{prop}
-       mapping des poids: Black->900, ExtraBold->800, Bold->700, Regular->400, Italic->400 + font-style
-    */
-        /* H1 */
-        --ts-H1-font-family: "Cinzel", serif;
-        --ts-H1-font-weight: 900;
-        --ts-H1-font-size: 48px;
-        --ts-H1-text-transform: uppercase;
+}
 
-        /* H2 */
-        --ts-H2-font-family: "Cinzel", serif;
-        --ts-H2-font-weight: 700;
-        --ts-H2-font-size: 36px;
-        --ts-H2-text-transform: uppercase;
+/* --- Thème custom : Mode 1 (couleurs + mapping daisyUI) --- */
+[data-theme="Mode 1"] {
+    /* couleurs brutes fournies */
+    --colors-black: #000000;
+    --colors-blue: #3600c9;
+    --colors-orange: #fd772b;
+    --colors-red: #cc1d48;
+    --colors-white: #f8f8f8;
+    --colors-white--pure: #ffffff;
+    --colors-zinc-100: #fafafa;
 
-        /* H3 */
-        --ts-H3-font-family: "Poppins", sans-serif;
-        --ts-H3-font-weight: 400;
-        --ts-H3-font-size: 20px;
-        --ts-H3-font-style: italic;
-        --ts-H3-text-transform: uppercase;
+    /* polices fournies (nom de police uniquement) */
+    --fonts-button: Raleway;
+    --fonts-corp: Poppins;
+    --fonts-main-title-home: "Cormorant Unicase";
+    --fonts-title: Cinzel;
 
-        /* Corp (corps de texte) */
-        --ts-Corp-font-family: "Poppins", sans-serif;
-        --ts-Corp-font-weight: 400;
-        --ts-Corp-font-size: 16px;
-        --ts-Corp-text-transform: none;
-
-        /* Button */
-        --ts-Button-font-family: "Raleway", sans-serif;
-        --ts-Button-font-weight: 400;
-        --ts-Button-font-size: 20px;
-        --ts-Button-text-transform: uppercase;
-
-        /* mobile */
-        --ts-corp-mobile-font-family: "Poppins", sans-serif;
-        --ts-corp-mobile-font-weight: 400;
-        --ts-corp-mobile-font-size: 14px;
-
-        --ts-H1-mobile-font-family: "Cormorant Unicase", serif;
-        --ts-H1-mobile-font-weight: 400;
-        --ts-H1-mobile-font-size: 45px;
-        --ts-H1-mobile-text-transform: uppercase;
-
-        --ts-H2-mobile-font-family: "Cinzel", serif;
-        --ts-H2-mobile-font-weight: 700;
-        --ts-H2-mobile-font-size: 22px;
-        --ts-H2-mobile-text-transform: uppercase;
-
-        --ts-H3-mobile-font-family: "Poppins", sans-serif;
-        --ts-H3-mobile-font-weight: 400;
-        --ts-H3-mobile-font-size: 16px;
-        --ts-H3-mobile-font-style: italic;
-        --ts-H3-mobile-text-transform: uppercase;
-
-        --ts-H2-V2-mobile-font-family: "Raleway", sans-serif;
-        --ts-H2-V2-mobile-font-weight: 800;
-        --ts-H2-V2-mobile-font-size: 18px;
-        --ts-H2-V2-mobile-text-transform: uppercase;
-
-        --ts-H3-V2-mobile-font-family: "Raleway", sans-serif;
-        --ts-H3-V2-mobile-font-weight: 700;
-        --ts-H3-V2-mobile-font-size: 15px;
-        --ts-H3-V2-mobile-text-transform: uppercase;
-    }
-
-    /* --- Application automatique des variables ---
-   - Les éléments HTML courants (h1,h2,h3,p,button) sont stylés
-   - Des classes utilitaires `.ts-{Name}` permettent d'appliquer un style n'importe où
-*/
-
-    :root {
-        /* fallback pour compatibilité existante */
-        --font-h1: var(--ts-H1-font-family);
-        --weight-h1: var(--ts-H1-font-weight);
-        --size-h1: var(--ts-H1-font-size);
-
-        --font-h2: var(--ts-H2-font-family);
-        --weight-h2: var(--ts-H2-font-weight);
-        --size-h2: var(--ts-H2-font-size);
-
-        --font-h3: var(--ts-H3-font-family);
-        --weight-h3: var(--ts-H3-font-weight);
-        --size-h3: var(--ts-H3-font-size);
-    }
-
-    /* Styles appliqués automatiquement aux éléments */
-    h1 {
-        font-family: var(--ts-H1-font-family);
-        font-weight: var(--ts-H1-font-weight);
-        font-size: var(--ts-H1-font-size);
-        text-transform: var(--ts-H1-text-transform, none);
-    }
-
-    h2 {
-        font-family: var(--ts-H2-font-family);
-        font-weight: var(--ts-H2-font-weight);
-        font-size: var(--ts-H2-font-size);
-        text-transform: var(--ts-H2-text-transform, none);
-    }
-
-    h3 {
-        font-family: var(--ts-H3-font-family);
-        font-weight: var(--ts-H3-font-weight);
-        font-size: var(--ts-H3-font-size);
-        text-transform: var(--ts-H3-text-transform, none);
-        font-style: var(--ts-H3-font-style, normal);
-    }
-
-    p,
-    .text-body {
-        font-family: var(--ts-Corp-font-family);
-        font-weight: var(--ts-Corp-font-weight);
-        font-size: var(--ts-Corp-font-size);
-        text-transform: var(--ts-Corp-text-transform, none);
-    }
-
-    button,
-    .btn,
-    .text-button {
-        font-family: var(--ts-Button-font-family);
-        font-weight: var(--ts-Button-font-weight);
-        font-size: var(--ts-Button-font-size);
-        text-transform: var(--ts-Button-text-transform, none);
-    }
-
-    /* Utility classes pour appliquer directement un style nommé */
-    .ts-H1 {
-        font-family: var(--ts-H1-font-family) !important;
-        font-weight: var(--ts-H1-font-weight) !important;
-        font-size: var(--ts-H1-font-size) !important;
-        text-transform: var(--ts-H1-text-transform, none) !important;
-    }
-
-    .ts-H2 {
-        font-family: var(--ts-H2-font-family) !important;
-        font-weight: var(--ts-H2-font-weight) !important;
-        font-size: var(--ts-H2-font-size) !important;
-        text-transform: var(--ts-H2-text-transform, none) !important;
-    }
-
-    .ts-H3 {
-        font-family: var(--ts-H3-font-family) !important;
-        font-weight: var(--ts-H3-font-weight) !important;
-        font-size: var(--ts-H3-font-size) !important;
-        text-transform: var(--ts-H3-text-transform, none) !important;
-        font-style: var(--ts-H3-font-style, normal) !important;
-    }
-
-    .ts-Corp {
-        font-family: var(--ts-Corp-font-family) !important;
-        font-weight: var(--ts-Corp-font-weight) !important;
-        font-size: var(--ts-Corp-font-size) !important;
-    }
-
-    .ts-Button {
-        font-family: var(--ts-Button-font-family) !important;
-        font-weight: var(--ts-Button-font-weight) !important;
-        font-size: var(--ts-Button-font-size) !important;
-        text-transform: var(--ts-Button-text-transform, none) !important;
-    }
-
-    /* Mobile overrides : utilise les variables `-mobile` quand la largeur est <= 768px */
-    @media (max-width: 768px) {
-
-        h1,
-        .ts-H1 {
-            font-family: var(--ts-H1-mobile-font-family, var(--ts-H1-font-family));
-            font-weight: var(--ts-H1-mobile-font-weight, var(--ts-H1-font-weight));
-            font-size: var(--ts-H1-mobile-font-size, var(--ts-H1-font-size));
-            text-transform: var(--ts-H1-mobile-text-transform, var(--ts-H1-text-transform, none));
-        }
-
-        h2,
-        .ts-H2 {
-            font-family: var(--ts-H2-mobile-font-family, var(--ts-H2-font-family));
-            font-weight: var(--ts-H2-mobile-font-weight, var(--ts-H2-font-weight));
-            font-size: var(--ts-H2-mobile-font-size, var(--ts-H2-font-size));
-            text-transform: var(--ts-H2-mobile-text-transform, var(--ts-H2-text-transform, none));
-        }
-
-        h3,
-        .ts-H3 {
-            font-family: var(--ts-H3-mobile-font-family, var(--ts-H3-font-family));
-            font-weight: var(--ts-H3-mobile-font-weight, var(--ts-H3-font-weight));
-            font-size: var(--ts-H3-mobile-font-size, var(--ts-H3-font-size));
-            text-transform: var(--ts-H3-mobile-text-transform, var(--ts-H3-text-transform, none));
-            font-style: var(--ts-H3-mobile-font-style, var(--ts-H3-font-style, normal));
-        }
-
-        /* autres styles mobiles spécifiques */
-        .ts-corp-mobile {
-            font-family: var(--ts-corp-mobile-font-family) !important;
-            font-weight: var(--ts-corp-mobile-font-weight) !important;
-            font-size: var(--ts-corp-mobile-font-size) !important;
-        }
-
-        .ts-H2-V2-mobile {
-            font-family: var(--ts-H2-V2-mobile-font-family) !important;
-            font-weight: var(--ts-H2-V2-mobile-font-weight) !important;
-            font-size: var(--ts-H2-V2-mobile-font-size) !important;
-            text-transform: var(--ts-H2-V2-mobile-text-transform, none) !important;
-        }
-
-        .ts-H3-V2-mobile {
-            font-family: var(--ts-H3-V2-mobile-font-family) !important;
-            font-weight: var(--ts-H3-V2-mobile-font-weight) !important;
-            font-size: var(--ts-H3-V2-mobile-font-size) !important;
-            text-transform: var(--ts-H3-V2-mobile-text-transform, none) !important;
-        }
-    }
-
-    /* --- Thème custom : Mode 1 (couleurs + mapping daisyUI) --- */
-    [data-theme="Mode 1"] {
-        /* couleurs brutes fournies */
-        --colors-black: #000000;
-        --colors-blue: #3600c9;
-        --colors-orange: #fd772b;
-        --colors-red: #cc1d48;
-        --colors-white: #f8f8f8;
-        --colors-white--pure: #ffffff;
-        --colors-zinc-100: #fafafa;
-
-        /* polices fournies (nom de police uniquement) */
-        --fonts-button: Raleway;
-        --fonts-corp: Poppins;
-        --fonts-main-title-home: "Cormorant Unicase";
-        --fonts-title: Cinzel;
-
-        /* alias/utilitaire fourni */
-        /* alias/utilitaire fourni : définir primary depuis tes variables couleurs
+    /* alias/utilitaire fourni */
+    /* alias/utilitaire fourni : définir primary depuis tes variables couleurs
          ici on utilise --colors-blue comme source de vérité pour primary */
-        --primary: var(--colors-blue, #704fe6);
-        --primary-content: var(--colors-white--pure);
+    --primary: var(--colors-blue, #704fe6);
+    --primary-content: var(--colors-white--pure);
 
-        /* mapping vers variables daisyUI utilisées dans le thème
+    /* mapping vers variables daisyUI utilisées dans le thème
          - primary -> blue
          - secondary -> orange
          - accent (troisième) -> red */
-        --color-primary: var(--primary);
-        --color-primary-content: var(--primary-content);
+    --color-primary: var(--primary);
+    --color-primary-content: var(--primary-content);
 
-        --color-secondary: var(--colors-orange);
-        --color-secondary-content: var(--colors-white--pure);
+    --color-secondary: var(--colors-orange);
+    --color-secondary-content: var(--colors-white--pure);
 
-        --color-accent: var(--colors-red);
-        --color-accent-content: var(--colors-white--pure);
+    --color-accent: var(--colors-red);
+    --color-accent-content: var(--colors-white--pure);
 
-        /* surfaces -> valeurs explicites pour meilleure cohérence */
-        --color-base-100: var(--colors-zinc-100);
-        /* #fafafa */
-        --color-base-200: #f4f4f4;
-        /* un peu plus sombre que base-100 */
-        --color-base-300: #e9e9e9;
-        /* couche d'élévation légère */
-        --color-base-content: #111111;
-        /* texte principal sur surfaces claires */
+    /* surfaces -> valeurs explicites pour meilleure cohérence */
+    --color-base-100: var(--colors-zinc-100);
+    /* #fafafa */
+    --color-base-200: #f4f4f4;
+    /* un peu plus sombre que base-100 */
+    --color-base-300: #e9e9e9;
+    /* couche d'élévation légère */
+    --color-base-content: #111111;
+    /* texte principal sur surfaces claires */
 
-        /* neutre / contrastes (valeurs choisies pour bon contraste sur base-*) */
-        --color-neutral: #2f2f2f;
-        /* gris foncé neutre */
-        --color-neutral-content: var(--colors-white--pure);
-        /* texte sur backgrounds neutres foncés */
+    /* neutre / contrastes (valeurs choisies pour bon contraste sur base-*) */
+    --color-neutral: #2f2f2f;
+    /* gris foncé neutre */
+    --color-neutral-content: var(--colors-white--pure);
+    /* texte sur backgrounds neutres foncés */
 
-        /* Quelques variables typographiques mappées pour cohérence */
-        --ts-Button-font-family: var(--fonts-button, "Raleway"), sans-serif;
-        --ts-Corp-font-family: var(--fonts-corp, "Poppins"), sans-serif;
-        --ts-H1-font-family: var(--fonts-main-title-home, "Cormorant Unicase"), serif;
-        --ts-H2-font-family: var(--fonts-title, "Cinzel"), serif;
-        /* reduce button rounding for Mode 1 */
-        --rounded-btn: 0.375rem;
-    }
+    /* Quelques variables typographiques mappées pour cohérence */
+    --ts-Button-font-family: var(--fonts-button, "Raleway"), sans-serif;
+    --ts-Corp-font-family: var(--fonts-corp, "Poppins"), sans-serif;
+    --ts-H1-font-family: var(--fonts-main-title-home, "Cormorant Unicase"), serif;
+    --ts-H2-font-family: var(--fonts-title, "Cinzel"), serif;
+    /* reduce button rounding for Mode 1 */
+    --rounded-btn: 0.375rem;
+}
 
-    /* --- Mode 1 : états (info / success / warning / error) --- */
-    [data-theme="Mode 1"] {
-        --color-info: #2b8cff;
-        /* bleu info */
-        --color-info-content: #ffffff;
+/* --- Mode 1 : états (info / success / warning / error) --- */
+[data-theme="Mode 1"] {
+    --color-info: #2b8cff;
+    /* bleu info */
+    --color-info-content: #ffffff;
 
-        --color-success: #16a34a;
-        /* vert */
-        --color-success-content: #ffffff;
+    --color-success: #16a34a;
+    /* vert */
+    --color-success-content: #ffffff;
 
-        --color-warning: #f59e0b;
-        /* orange/jaune */
-        --color-warning-content: #111111;
+    --color-warning: #f59e0b;
+    /* orange/jaune */
+    --color-warning-content: #111111;
 
-        --color-error: #dc2626;
-        /* rouge */
-        --color-error-content: #ffffff;
-    }
+    --color-error: #dc2626;
+    /* rouge */
+    --color-error-content: #ffffff;
+}
 
-    /* --- Mode 2 : thème sombre basé sur Mode 1 (assombri / inversé) --- */
-    [data-theme="Mode 2"] {
-        /* reuse Mode 1 base colors but adapt for dark background */
-        --colors-black: #0b0b0b;
-        --colors-white: #0f172a;
-        /* dark surface */
-        --colors-white--pure: #0b1220;
-        --colors-zinc-100: #0b1220;
+/* --- Mode 2 : thème sombre basé sur Mode 1 (assombri / inversé) --- */
+[data-theme="Mode 2"] {
+    /* reuse Mode 1 base colors but adapt for dark background */
+    --colors-black: #0b0b0b;
+    --colors-white: #0f172a;
+    /* dark surface */
+    --colors-white--pure: #0b1220;
+    --colors-zinc-100: #0b1220;
 
-        /* primary should be blue in dark mode too to match portfolio */
-        --primary: #3600c9;
-        /* blue */
+    /* primary should be blue in dark mode too to match portfolio */
+    --primary: #3600c9;
+    /* blue */
 
-        /* surfaces */
-        --color-base-100: #071129;
-        /* très sombre */
-        --color-base-200: #091827;
-        --color-base-300: #0c2534;
-        --color-base-content: #e6eef8;
-        /* texte clair */
+    /* surfaces */
+    --color-base-100: #071129;
+    /* très sombre */
+    --color-base-200: #091827;
+    --color-base-300: #0c2534;
+    --color-base-content: #e6eef8;
+    /* texte clair */
 
-        /* accents et contrastes: primary=blue, secondary=orange, accent=red */
-        --color-primary: var(--primary);
-        --color-primary-content: #ffffff;
-        --primary-content: var(--color-primary-content);
-        --color-secondary: #fd772b;
-        /* orange */
-        --color-secondary-content: #ffffff;
-        --color-accent: #cc1d48;
-        /* red */
-        --color-accent-content: #071129;
+    /* accents et contrastes: primary=blue, secondary=orange, accent=red */
+    --color-primary: var(--primary);
+    --color-primary-content: #ffffff;
+    --primary-content: var(--color-primary-content);
+    --color-secondary: #fd772b;
+    /* orange */
+    --color-secondary-content: #ffffff;
+    --color-accent: #cc1d48;
+    /* red */
+    --color-accent-content: #071129;
 
-        --color-neutral: #9aa6b2;
-        /* neutre clair pour surfaces sombres */
-        --color-neutral-content: #071129;
+    --color-neutral: #9aa6b2;
+    /* neutre clair pour surfaces sombres */
+    --color-neutral-content: #071129;
 
-        /* states adapted */
-        --color-info: #60a5fa;
-        --color-info-content: #071129;
-        --color-success: #4ade80;
-        --color-success-content: #071129;
-        --color-warning: #fbbf24;
-        --color-warning-content: #071129;
-        --color-error: #fb7185;
-        --color-error-content: #071129;
+    /* states adapted */
+    --color-info: #60a5fa;
+    --color-info-content: #071129;
+    --color-success: #4ade80;
+    --color-success-content: #071129;
+    --color-warning: #fbbf24;
+    --color-warning-content: #071129;
+    --color-error: #fb7185;
+    --color-error-content: #071129;
 
-        /* typography mapping (use same font variables) */
-        --ts-Button-font-family: var(--fonts-button, "Raleway"), sans-serif;
-        --ts-Corp-font-family: var(--fonts-corp, "Poppins"), sans-serif;
-        --ts-H1-font-family: var(--fonts-main-title-home, "Cormorant Unicase"), serif;
-        --ts-H2-font-family: var(--fonts-title, "Cinzel"), serif;
-        /* reduce button rounding for Mode 2 */
-        --rounded-btn: 0.375rem;
-    }
+    /* typography mapping (use same font variables) */
+    --ts-Button-font-family: var(--fonts-button, "Raleway"), sans-serif;
+    --ts-Corp-font-family: var(--fonts-corp, "Poppins"), sans-serif;
+    --ts-H1-font-family: var(--fonts-main-title-home, "Cormorant Unicase"), serif;
+    --ts-H2-font-family: var(--fonts-title, "Cinzel"), serif;
+    /* reduce button rounding for Mode 2 */
+    --rounded-btn: 0.375rem;
+}
 
-    /* Override global button rounding to avoid pill-shaped buttons (match white button style)
+/* Override global button rounding to avoid pill-shaped buttons (match white button style)
    - Force a moderate radius so primary buttons (blue) look like the white example
    - Use !important to override framework defaults if necessary; ajustez 0.5rem si vous
      voulez plus ou moins arrondi (0.25rem = net, 0.75rem = plus arrondi). */
-    .btn,
-    .button,
-    .btn-primary,
-    .btn-ghost,
-    .btn-outline {
-        border-radius: 0.5rem !important;
-        /* ~8px */
-        /* keep the CSS variable in sync for daisyUI components that read it */
-        --rounded-btn: 0.5rem;
+.btn,
+.button,
+.btn-primary,
+.btn-ghost,
+.btn-outline {
+    border-radius: 0.5rem !important;
+    /* ~8px */
+    /* keep the CSS variable in sync for daisyUI components that read it */
+    --rounded-btn: 0.5rem;
+}
+
+/* =================================================================
+   FORCE MAXIMALE : Override absolu pour DESKTOP et MOBILE (DOIT être en dernier)
+   Bat toutes les classes Tailwind (text-xs, text-sm, etc.)
+   ================================================================= */
+
+/* DESKTOP : > 1024px */
+@media (min-width: 1025px) {
+
+    /* Force les styles H1 desktop */
+    h1,
+    h1[class*="text-"],
+    h1[class*="ts-"] {
+        font-family: "Cinzel", serif !important;
+        font-size: 48px !important;
+        font-weight: 900 !important;
+        text-transform: uppercase !important;
     }
+
+    /* Force les styles H2 desktop */
+    h2,
+    h2[class*="text-"],
+    h2[class*="ts-"],
+    h2[class] {
+        font-family: "Cinzel", serif !important;
+        font-size: 40px !important;
+        font-weight: 700 !important;
+        text-transform: uppercase !important;
+    }
+
+    /* Force les styles H3 desktop */
+    h3,
+    h3[class*="text-"],
+    h3[class*="ts-"],
+    h3[class] {
+        font-family: "Poppins", sans-serif !important;
+        font-size: 20px !important;
+        font-weight: 400 !important;
+        font-style: italic !important;
+        text-transform: uppercase !important;
+    }
+
+    /* Force les styles paragraphes desktop */
+    p,
+    p[class*="text-"],
+    p[class*="ts-"],
+    p.ts-Corp,
+    p.text-body,
+    p[class],
+    .text-body {
+        font-family: "Poppins", sans-serif !important;
+        font-size: 16px !important;
+        font-weight: 400 !important;
+    }
+
+    /* Force les styles boutons desktop */
+    button,
+    button[class*="btn"],
+    button[class],
+    .btn,
+    .text-button {
+        font-family: "Raleway", sans-serif !important;
+        font-size: 20px !important;
+        font-weight: 400 !important;
+        text-transform: uppercase !important;
+    }
+}
+
+/* MOBILE : < 768px */
+@media (max-width: 767px) {
+
+    /* Force Poppins 14px pour TOUS les paragraphes en mobile */
+    p,
+    p[class*="text-"],
+    p.ts-Corp,
+    p.text-body,
+    .text-body {
+        font-family: "Poppins", sans-serif !important;
+        font-size: 14px !important;
+        font-weight: 400 !important;
+    }
+
+    /* Force les styles H1 mobile */
+    h1,
+    h1[class*="text-"] {
+        font-family: "Cormorant Unicase", serif !important;
+        font-size: 45px !important;
+        font-weight: 400 !important;
+        text-transform: uppercase !important;
+    }
+
+    /* Force les styles H2 mobile */
+    h2,
+    h2[class*="text-"] {
+        font-family: "Cinzel", serif !important;
+        font-size: 22px !important;
+        font-weight: 700 !important;
+        text-transform: uppercase !important;
+    }
+
+    /* Force les styles H3 mobile */
+    h3,
+    h3[class*="text-"] {
+        font-family: "Poppins", sans-serif !important;
+        font-size: 16px !important;
+        font-weight: 400 !important;
+        font-style: italic !important;
+        text-transform: uppercase !important;
+    }
+
+    /* Force les styles boutons mobile - taille réduite */
+    button,
+    button[class*="btn"],
+    .btn,
+    .text-button {
+        font-family: "Raleway", sans-serif !important;
+        font-size: 16px !important;
+        font-weight: 400 !important;
+        text-transform: uppercase !important;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
+    /* Tablette : mêmes styles que mobile */
+    p,
+    p[class*="text-"],
+    p.ts-Corp,
+    p.text-body,
+    .text-body {
+        font-family: "Poppins", sans-serif !important;
+        font-size: 14px !important;
+        font-weight: 400 !important;
+    }
+
+    h1,
+    h1[class*="text-"] {
+        font-family: "Cormorant Unicase", serif !important;
+        font-size: 45px !important;
+        font-weight: 400 !important;
+        text-transform: uppercase !important;
+    }
+
+    h2,
+    h2[class*="text-"] {
+        font-family: "Cinzel", serif !important;
+        font-size: 22px !important;
+        font-weight: 700 !important;
+        text-transform: uppercase !important;
+    }
+
+    h3,
+    h3[class*="text-"] {
+        font-family: "Poppins", sans-serif !important;
+        font-size: 16px !important;
+        font-weight: 400 !important;
+        font-style: italic !important;
+        text-transform: uppercase !important;
+    }
+
+    /* Force les styles boutons tablette - taille réduite */
+    button,
+    button[class*="btn"],
+    .btn,
+    .text-button {
+        font-family: "Raleway", sans-serif !important;
+        font-size: 17px !important;
+        font-weight: 400 !important;
+        text-transform: uppercase !important;
+    }
+}
