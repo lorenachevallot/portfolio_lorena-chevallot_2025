@@ -61,7 +61,7 @@ const carouselData = [
 ];
 ---
 
-<section id="competences" class="relative text-white py-20">
+<section id="competences" class="relative text-white py-24 md:py-20 lg:py-28">
     <!-- Décoration florale avec sphères statiques -->
     <div
         class="absolute right-0 bottom-16 w-[60dvw] h-[60dvw] md:w-[200px] md:h-[200px] lg:w-[280px] lg:h-[280px] pointer-events-none -z-10"
@@ -307,39 +307,19 @@ const carouselData = [
     }
 </style>
 
-<script>
+<script define:vars={{ carouselData }}>
     let activeStep = 0;
     const totalSteps = 4;
 
     // Données des icônes (correspondant à carouselData)
-    const carouselIconsData = [
-        {
-            iconSrc: "/src/assets/stat.svg",
-            title: "Stratégie & storytelling",
-            shortTitle: "Stratégie",
-            isEmoji: false,
-        },
-        {
-            iconSrc: "/src/assets/design.svg",
-            title: "Design & identité visuelle",
-            shortTitle: "Design",
-            isEmoji: false,
-        },
-        {
-            iconSrc: "/src/assets/ordi.svg",
-            title: "Développement Web",
-            shortTitle: "Dev Web",
-            isEmoji: false,
-        },
-        {
-            iconSrc: "/src/assets/roue.svg",
-            title: "Audiovisuel",
-            shortTitle: "Audiovisuel",
-            isEmoji: false,
-        },
-    ];
+    const carouselIconsData = carouselData.map((item) => ({
+        iconSrc: typeof item.icon === "string" ? item.icon : item.icon.src,
+        title: item.title,
+        shortTitle: item.shortTitle,
+        isEmoji: typeof item.icon === "string",
+    }));
 
-    function updateCarousel(newStep: number) {
+    function updateCarousel(newStep) {
         activeStep = newStep;
 
         // Cacher tous les slides avec animation
