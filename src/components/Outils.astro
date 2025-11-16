@@ -116,26 +116,24 @@ const tools = [
         justify-content: flex-start;
         pointer-events: none;
         z-index: 1;
-        transform: translateX(0);
     }
 
     /* Animation de déplacement du néon en version lg */
     @media (min-width: 1024px) {
-        .neon-bar-container {
-            animation: neonTravelHorizontal 3s cubic-bezier(0.4, 0, 0.2, 1)
-                forwards;
+        .neon-bar-container.animate {
+            animation: neonTravelOutils 3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
     }
 
-    @keyframes neonTravelHorizontal {
+    @keyframes neonTravelOutils {
         0% {
-            transform: translateX(0);
+            left: -80px;
         }
         50% {
-            transform: translateX(calc(100vw + 80px));
+            left: calc(100% + 80px);
         }
         100% {
-            transform: translateX(0);
+            left: -80px;
         }
     }
 
@@ -171,7 +169,7 @@ const tools = [
 
     /* Pulsation du néon après l'animation */
     @media (min-width: 1024px) {
-        .neon-bar {
+        .neon-bar-container.animate .neon-bar {
             animation: neon-pulse 2s ease-in-out 3s infinite alternate;
         }
     }
@@ -222,6 +220,14 @@ const tools = [
             (entries) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
+                        // Démarrer l'animation du néon
+                        const neonContainer = document.querySelector(
+                            "#outils .neon-bar-container",
+                        );
+                        if (neonContainer) {
+                            neonContainer.classList.add("animate");
+                        }
+
                         // Révéler le contenu pendant que le néon revient (après 1.8s)
                         setTimeout(() => {
                             const contentContainer = document.querySelector(

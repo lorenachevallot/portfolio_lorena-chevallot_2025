@@ -7,14 +7,14 @@ import Logo from "../assets/logo.svg";
 >
     <nav class="navbar w-full px-4 md:px-8 lg:px-16 h-16 md:h-18 lg:h-20">
         <div class="navbar-start">
-            <div class="flex items-center gap-1">
+            <a href="#hero" class="flex items-center gap-1">
                 <img
                     src={Logo.src}
                     alt="Logo"
                     class="h-10 md:h-11 lg:h-12 w-auto"
                     style="image-rendering: -webkit-optimize-contrast; image-rendering: crisp-edges;"
                 />
-            </div>
+            </a>
         </div>
 
         <!-- Menu hamburger pour mobile et tablette -->
@@ -152,6 +152,16 @@ import Logo from "../assets/logo.svg";
             menuToggle?.setAttribute("aria-expanded", "false");
             mobileMenu?.classList.add("hidden");
         });
+    });
+
+    // Gérer le clic sur le logo
+    const logoLink = document.querySelector('a[href="#hero"]');
+    logoLink?.addEventListener("click", (e) => {
+        e.preventDefault();
+        const heroSection = document.querySelector("#hero");
+        if (heroSection) {
+            heroSection.scrollIntoView({ behavior: "smooth" });
+        }
     });
 </script>
 

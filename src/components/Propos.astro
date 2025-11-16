@@ -177,17 +177,17 @@ import Photo from "../assets/photo.webp";
 
     /* Animation de déplacement du néon en version lg */
     @media (min-width: 1024px) {
-        .neon-bar-container {
+        .neon-bar-container.animate {
             animation: neonTravel 3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
     }
 
     @keyframes neonTravel {
         0% {
-            left: -5%;
+            left: 8%;
         }
         50% {
-            left: 110%;
+            left: 92%;
         }
         100% {
             left: 8%;
@@ -226,7 +226,7 @@ import Photo from "../assets/photo.webp";
 
     /* Pulsation du néon après l'animation */
     @media (min-width: 1024px) {
-        .neon-bar {
+        .neon-bar-container.animate .neon-bar {
             animation: neon-pulse 2s ease-in-out 3s infinite alternate;
         }
     }
@@ -339,13 +339,21 @@ import Photo from "../assets/photo.webp";
             (entries) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
-                        // Révéler le contenu pendant que le néon revient (après 1.5s, quand il repart de droite à gauche)
+                        // Démarrer l'animation du néon
+                        const neonContainer = document.querySelector(
+                            "#a-propos .neon-bar-container",
+                        );
+                        if (neonContainer) {
+                            neonContainer.classList.add("animate");
+                        }
+
+                        // Révéler le contenu pendant que le néon revient (après 1.8s)
                         setTimeout(() => {
                             const contentContainer = document.querySelector(
-                                ".content-container",
+                                "#a-propos .content-container",
                             ) as HTMLElement;
                             const photoContainer = document.querySelector(
-                                ".photo-container",
+                                "#a-propos .photo-container",
                             ) as HTMLElement;
 
                             if (contentContainer) {
