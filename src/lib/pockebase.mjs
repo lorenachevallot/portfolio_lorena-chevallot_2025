@@ -1,10 +1,11 @@
 import PocketBase from "pocketbase";
 
 // Détection de l'environnement
-// En développement (serveur Astro), utiliser localhost
-// En production, utiliser l'URL de production
+// En développement et build, utiliser localhost
+// En production runtime, utiliser l'URL de production
 const isDev = import.meta.env.DEV;
-const baseUrl = isDev
+const isSSR = import.meta.env.SSR;
+const baseUrl = (isDev || isSSR)
     ? "http://127.0.0.1:8090"
     : "https://portfolio.lorena-chevallot.fr";
 
