@@ -3,6 +3,7 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
+    "pocketbase": "cd backend && pocketbase serve",
     "dev": "astro dev --host",
     "build": "astro build",
     "preview": "astro preview",

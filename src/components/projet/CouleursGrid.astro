@@ -1,0 +1,54 @@
+---
+interface Props {
+    couleurs: Array<{ name: string; hex: string }> | string | any;
+    titre: string;
+}
+
+const { couleurs, titre } = Astro.props;
+
+// Parse les couleurs selon leur type
+let couleursArray: Array<{ name: string; hex: string }> = [];
+
+if (!couleurs) {
+    console.error(`[CouleursGrid] ${titre} - Couleurs vides ou undefined`);
+} else if (typeof couleurs === "string") {
+    try {
+        couleursArray = JSON.parse(couleurs);
+    } catch (e) {
+        console.error(`[CouleursGrid] ${titre} - Erreur parsing:`, e);
+    }
+} else if (Array.isArray(couleurs)) {
+    couleursArray = couleurs;
+}
+
+// Déterminer la classe grid en fonction du nombre de couleurs
+const nbCouleurs = couleursArray.length;
+let gridClass = "grid gap-8";
+if (nbCouleurs === 4) {
+    gridClass = "grid grid-cols-2 gap-x-4 gap-y-8";
+} else if (nbCouleurs === 6) {
+    gridClass = "grid grid-cols-3 gap-x-4 gap-y-8";
+} else if (nbCouleurs === 8) {
+    gridClass = "grid grid-cols-4 gap-x-4 gap-y-8";
+} else {
+    gridClass = "flex flex-wrap gap-8";
+}
+---
+
+<div
+    class="bg-zinc-900/50 backdrop-blur-sm p-6 rounded-2xl border border-zinc-800"
+>
+    <h3 class="text-xl font-bold mb-4">{titre}</h3>
+    <div class={gridClass}>
+        {
+            couleursArray.map((couleur) => (
+                <div class="flex flex-col items-center">
+                    <div
+                        class="w-full h-20 rounded-lg shadow-lg border border-white/20"
+                        style={`background-color: ${couleur.hex}`}
+                    />
+                </div>
+            ))
+        }
+    </div>
+</div>

@@ -1,0 +1,38 @@
+---
+interface Props {
+    titre: string;
+    texte?: string;
+    logo?: string;
+    getImageUrl: (
+        collectionId: string,
+        recordId: string,
+        filename: string,
+    ) => string;
+    collectionId: string;
+    recordId: string;
+}
+
+const { titre, texte, logo, getImageUrl, collectionId, recordId } = Astro.props;
+---
+
+<div class="relative pt-12">
+    {
+        logo && (
+            <div class="absolute top-12 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-24 h-24 rounded-full border-2 border-white shadow-[0_0_25px_rgba(255,255,255,0.8)] flex items-center justify-center bg-black z-10">
+                <img
+                    src={getImageUrl(collectionId, recordId, logo)}
+                    alt={titre}
+                    class="w-14 h-14 object-contain"
+                />
+            </div>
+        )
+    }
+    <div
+        class="bg-black/80 backdrop-blur-sm p-6 pt-16 rounded-2xl border border-white flex flex-col items-center min-h-[65dvh]"
+    >
+        <h3 class="text-xl font-bold mb-6 text-white text-center w-full">
+            {titre}
+        </h3>
+        {texte && <p class="text-gray-300 text-left w-full">{texte}</p>}
+    </div>
+</div>

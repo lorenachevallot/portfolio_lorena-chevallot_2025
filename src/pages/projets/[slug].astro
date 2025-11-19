@@ -1,0 +1,475 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import SectionTitle from "../../components/projet/SectionTitle.astro";
+import StrategieCard from "../../components/projet/StrategieCard.astro";
+import CouleursGrid from "../../components/projet/CouleursGrid.astro";
+export const prerender = true;
+import {
+    getProjetBySlug,
+    getProjets,
+    getLogicielById,
+} from "../../lib/pockebase.mjs";
+import type { ProjetRecord, LogicielRecord } from "../../lib/types";
+
+const { slug } = Astro.params;
+const projet = (await getProjetBySlug(slug)) as ProjetRecord;
+
+// Récupérer les détails des logiciels
+let logicielsDetails: LogicielRecord[] = [];
+if (projet && projet.logiciels && projet.logiciels.length > 0) {
+    const results = await Promise.all(
+        projet.logiciels.map(async (logicielId: string) => {
+            console.log("Récupération du logiciel:", logicielId);
+            const logiciel = await getLogicielById(logicielId);
+            console.log("Logiciel récupéré:", logiciel);
+            return logiciel;
+        }),
+    );
+    logicielsDetails = results.filter((l): l is LogicielRecord => l !== null);
+}
+
+if (!projet) {
+    return Astro.redirect("/");
+}
+
+export async function getStaticPaths() {
+    const projets = await getProjets();
+    return projets.map((projet) => ({
+        params: { slug: projet.slug },
+    }));
+}
+
+const getImageUrl = (
+    collectionId: string,
+    recordId: string,
+    filename: string,
+) => {
+    const baseUrl = import.meta.env.DEV
+        ? "http://127.0.0.1:8090"
+        : "https://portfolio.lorena-chevallot.fr";
+    return `${baseUrl}/api/files/${collectionId}/${recordId}/${filename}`;
+};
+
+const formatTypoName = (typoName: string) => {
+    return typoName
+        .split(" ")
+        .map(
+            (word) =>
+                word.charAt(0).toUpperCase() + word.slice(1).toLowerCase(),
+        )
+        .join("+");
+};
+
+const typoFormatted = projet.typo_nom ? formatTypoName(projet.typo_nom) : "";
+---
+
+<Layout title={`${projet.nom} - Loréna Chevallot`}>
+    <section class="bg-black text-white pt-24 pb-0 px-4 md:px-8 lg:px-16 h-fit">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-8">
+                <a
+                    href="/#projets"
+                    class="inline-flex items-center gap-2 text-gray-400 hover:text-orange-500 transition-colors mb-6"
+                >
+                    <svg
+                        class="w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                    Retour aux projets
+                </a>
+
+                <div class="flex flex-col items-center gap-4 mb-4">
+                    {
+                        projet.logo && (
+                            <img
+                                src={getImageUrl(
+                                    projet.collectionId,
+                                    projet.id,
+                                    projet.logo,
+                                )}
+                                alt={projet.nom}
+                                class="w-72 h-72 md:w-80 md:h-80 object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] relative z-30"
+                            />
+                        )
+                    }
+                    <h1
+                        class="relative z-20 drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]"
+                        style=`
+                    @import url('https://fonts.googleapis.com/css2?family=${typoFormatted}:wght@100..900&display=swap');
+                    font-family: '${projet.typo_nom}', sans-serif !important;
+                    text-transform: none !important;`
+                    >
+                        {projet.nom}
+                    </h1>
+                </div>
+
+                {
+                    projet.sloggan && (
+                        <p class="text-xl md:text-2xl text-white-400 text-center relative z-20">
+                            {projet.sloggan}
+                        </p>
+                    )
+                }
+            </div>
+
+            <!-- Section 1: Prévisualisation -->
+            {
+                projet.previsualisation && (
+                    <div class="mb-64 relative flex justify-center items-center">
+                        {projet.ellipse && (
+                            <div
+                                class="absolute w-[1200px] h-[1200px] rounded-full blur-3xl opacity-80 z-0"
+                                style={`background: radial-gradient(circle, ${projet.ellipse} 0%, transparent 70%);`}
+                            />
+                        )}
+                        <div class="rounded-2xl overflow-hidden relative z-10">
+                            <img
+                                src={getImageUrl(
+                                    projet.collectionId,
+                                    projet.id,
+                                    projet.previsualisation,
+                                )}
+                                alt={projet.nom}
+                                class="w-[70dvw] mx-auto h-auto object-cover"
+                            />
+                        </div>
+                    </div>
+                )
+            }
+
+            {
+                logicielsDetails.length > 0 && (
+                    <div class="mb-64">
+                        <SectionTitle title="Logiciels utilisés" />
+                        <div class="flex flex-wrap gap-4 justify-between">
+                            {logicielsDetails.map(
+                                (logiciel: LogicielRecord) => (
+                                    <div class="flex flex-col items-center gap-2">
+                                        <img
+                                            src={getImageUrl(
+                                                logiciel.collectionId,
+                                                logiciel.id,
+                                                logiciel.logo,
+                                            )}
+                                            alt={logiciel.nom}
+                                            class="h-full w-auto object-contain"
+                                        />
+                                        <span class="text-sm text-gray-400">
+                                            {logiciel.nom}
+                                        </span>
+                                    </div>
+                                ),
+                            )}
+                        </div>
+                    </div>
+                )
+            }
+
+            <!-- Section 3: Contexte -->
+            {
+                projet.contexte && (
+                    <div class="mb-64 relative">
+                        <div
+                            class="bg-zinc-900/50 backdrop-blur-sm p-12 rounded-2xl border-2 border-white shadow-[0_0_25px_rgba(255,255,255,0.8)]"
+                            style={
+                                projet.contour_contexte
+                                    ? `box-shadow: 0 0 25px rgba(255,255,255,0.8), 0 0 50px ${projet.contour_contexte}, 0 0 100px ${projet.contour_contexte};`
+                                    : ""
+                            }
+                        >
+                            <h2
+                                class="font-bold mb-6"
+                                style="font-family: 'Raleway', sans-serif !important; font-weight: 700 !important; font-size: 1.875rem !important;"
+                            >
+                                Contexte, enjeux et objectifs
+                            </h2>
+                            <p class="text-gray-300 leading-relaxed text-lg max-w-[70%]">
+                                {projet.contexte}
+                            </p>
+                        </div>
+                        {projet.image_contexte && (
+                            <div class="absolute top-1/2 -right-16 transform -translate-y-1/2 w-2/5 hidden md:block">
+                                <img
+                                    src={getImageUrl(
+                                        projet.collectionId,
+                                        projet.id,
+                                        projet.image_contexte,
+                                    )}
+                                    alt="Image contexte"
+                                    class="w-full h-auto rounded-lg"
+                                />
+                            </div>
+                        )}
+                    </div>
+                )
+            }
+
+            <!-- Section 4: Stratégie -->
+            {
+                (projet.titre_strat_1 ||
+                    projet.titre_strat_2 ||
+                    projet.titre_strat_3) && (
+                    <div class="mb-64">
+                        <SectionTitle title="Stratégie de communication" />
+                        <div class="grid md:grid-cols-3 gap-6">
+                            {projet.titre_strat_1 && (
+                                <StrategieCard
+                                    titre={projet.titre_strat_1}
+                                    texte={projet.texte_strat_1}
+                                    logo={projet.logo_strat_1}
+                                    getImageUrl={getImageUrl}
+                                    collectionId={projet.collectionId}
+                                    recordId={projet.id}
+                                />
+                            )}
+                            {projet.titre_strat_2 && (
+                                <StrategieCard
+                                    titre={projet.titre_strat_2}
+                                    texte={projet.texte_strat_2}
+                                    logo={projet.logo_strat_2}
+                                    getImageUrl={getImageUrl}
+                                    collectionId={projet.collectionId}
+                                    recordId={projet.id}
+                                />
+                            )}
+                            {projet.titre_strat_3 && (
+                                <StrategieCard
+                                    titre={projet.titre_strat_3}
+                                    texte={projet.texte_strat_3}
+                                    logo={projet.logo_strat_3}
+                                    getImageUrl={getImageUrl}
+                                    collectionId={projet.collectionId}
+                                    recordId={projet.id}
+                                />
+                            )}
+                        </div>
+                    </div>
+                )
+            }
+
+            <!-- Section 5: Logo -->
+            {
+                (projet.texte_logo ||
+                    projet.recherche_graphique ||
+                    projet.logo) && (
+                    <div class="mb-64">
+                        <SectionTitle title="Logo" withLine={false} />
+                        <div
+                            class="h-0.5 bg-white mb-6 w-full"
+                            style="box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6);"
+                        />
+                        {projet.texte_logo && (
+                            <p class="text-gray-300 leading-relaxed mb-12">
+                                {projet.texte_logo}
+                            </p>
+                        )}
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                            {projet.recherche_graphique &&
+                                projet.recherche_graphique.length > 0 && (
+                                    <div>
+                                        <SectionTitle
+                                            title="Recherche graphique"
+                                            size="medium"
+                                            withLine={false}
+                                        />
+                                        <div class="grid grid-cols-3 gap-8 max-w-sm">
+                                            {projet.recherche_graphique.map(
+                                                (image: string) => (
+                                                    <div class="bg-zinc-900/50 backdrop-blur-sm p-4 rounded-2xl border border-white shadow-[0_0_15px_rgba(255,255,255,0.5)] flex items-center justify-center aspect-square">
+                                                        <img
+                                                            src={getImageUrl(
+                                                                projet.collectionId,
+                                                                projet.id,
+                                                                image,
+                                                            )}
+                                                            alt="Recherche graphique"
+                                                            class="w-full h-full object-contain"
+                                                        />
+                                                    </div>
+                                                ),
+                                            )}
+                                        </div>
+                                    </div>
+                                )}
+                            {projet.logo && (
+                                <div>
+                                    <SectionTitle
+                                        title="Logo final"
+                                        size="medium"
+                                        withLine={false}
+                                    />
+                                    <div class="flex justify-start">
+                                        <div
+                                            class="bg-zinc-900/50 backdrop-blur-sm p-8 rounded-2xl border flex items-center justify-center w-64 h-64"
+                                            style={
+                                                projet.contour_logo_final
+                                                    ? `border-color: ${projet.contour_logo_final}; box-shadow: 0 0 15px ${projet.contour_logo_final};`
+                                                    : "border-color: white; box-shadow: 0 0 15px rgba(255,255,255,0.5);"
+                                            }
+                                        >
+                                            <img
+                                                src={getImageUrl(
+                                                    projet.collectionId,
+                                                    projet.id,
+                                                    projet.logo,
+                                                )}
+                                                alt="Logo final"
+                                                class="w-full h-full object-contain"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                )
+            }
+
+            <!-- Section 6: Couleurs -->
+            {
+                (projet.couleurs_originelles || projet.couleurs) && (
+                    <div class="mb-64">
+                        <SectionTitle title="Couleurs" withLine={false} />
+                        <div
+                            class="h-0.5 bg-white mb-6 w-full"
+                            style="box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6);"
+                        />
+                        {projet.texte_couleurs && (
+                            <p class="text-gray-300 mb-6 leading-relaxed">
+                                {projet.texte_couleurs}
+                            </p>
+                        )}
+                        <div class="grid md:grid-cols-2 gap-8">
+                            {projet.couleurs_originelles && (
+                                <CouleursGrid
+                                    couleurs={projet.couleurs_originelles}
+                                    titre="Couleurs originelles"
+                                />
+                            )}
+                            {projet.couleurs && (
+                                <CouleursGrid
+                                    couleurs={projet.couleurs}
+                                    titre="Couleurs finales"
+                                />
+                            )}
+                        </div>
+                    </div>
+                )
+            }
+
+            <!-- Section 7: Typographies -->
+            {
+                projet.typo && (
+                    <div class="mb-64 bg-zinc-900/50 backdrop-blur-sm p-8 rounded-2xl border border-zinc-800">
+                        <SectionTitle
+                            title="Typographies"
+                            size="medium"
+                            withLine={false}
+                        />
+                        <div class="space-y-4">
+                            {Object.entries(projet.typo).map(
+                                ([nom, police]) => (
+                                    <div class="border-b border-zinc-700 pb-4">
+                                        <p class="text-sm text-gray-400 mb-2">
+                                            {nom}
+                                        </p>
+                                        <p
+                                            class="text-2xl"
+                                            style={`font-family: ${police}`}
+                                        >
+                                            {police}
+                                        </p>
+                                    </div>
+                                ),
+                            )}
+                        </div>
+                    </div>
+                )
+            }
+
+            <!-- Section 8: Moodboard -->
+            {
+                projet.moodboard && (
+                    <div class="md:mb-32 lg:mb-48">
+                        <SectionTitle title="Moodboard" withLine={false} />
+                        <div
+                            class="h-0.5 bg-white mb-6 w-full"
+                            style="box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6);"
+                        />
+                        <div class="rounded-2xl overflow-hidden shadow-2xl">
+                            <img
+                                src={getImageUrl(
+                                    projet.collectionId,
+                                    projet.id,
+                                    projet.moodboard,
+                                )}
+                                alt="Moodboard"
+                                class="w-full h-auto object-cover"
+                            />
+                        </div>
+                    </div>
+                )
+            }
+
+            <!-- Section 9: Livrable -->
+            {
+                (projet.livrable_texte || projet.livrable_image) && (
+                    <div class="md:mb-64">
+                        <SectionTitle title="Livrable" withLine={false} />
+                        <div
+                            class="h-0.5 bg-white mb-6 w-full"
+                            style="box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6);"
+                        />
+                        {projet.livrable_texte && (
+                            <p class="text-gray-300 leading-relaxed mb-6">
+                                {projet.livrable_texte}
+                            </p>
+                        )}
+                        {projet.livrable_image && (
+                            <img
+                                src={getImageUrl(
+                                    projet.collectionId,
+                                    projet.id,
+                                    projet.livrable_image,
+                                )}
+                                alt="Livrable"
+                                class="w-full h-auto rounded-lg"
+                            />
+                        )}
+                    </div>
+                )
+            }
+        </div>
+    </section>
+
+    <!-- Section 10: Mockups -->
+    {
+        projet.mockups && projet.mockups.length > 0 && (
+            <div class="w-full bg-black">
+                <div class="flex flex-col">
+                    {projet.mockups.map((mockup: string) => (
+                        <div class="w-full">
+                            <img
+                                src={getImageUrl(
+                                    projet.collectionId,
+                                    projet.id,
+                                    mockup,
+                                )}
+                                alt="Mockup"
+                                class="w-full h-auto object-cover"
+                            />
+                        </div>
+                    ))}
+                </div>
+            </div>
+        )
+    }
+</Layout>

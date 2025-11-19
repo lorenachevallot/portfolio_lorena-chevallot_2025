@@ -8,18 +8,21 @@ const projects = [
         title: "BeeUs",
         description: "En savoir plus",
         image: Beeus,
+        slug: "beeus",
     },
     {
         id: 2,
         title: "ShareAmi",
         description: "En savoir plus",
         image: ShareAmi,
+        slug: "shareami",
     },
     {
         id: 3,
         title: "Vertify",
         description: "En savoir plus",
         image: Vertify,
+        slug: "vertify",
     },
 ];
 ---
@@ -65,9 +68,12 @@ const projects = [
                                 <h3 class="text-2xl font-bold mb-2 transition-all duration-500">
                                     {project.title}
                                 </h3>
-                                <p class="text-sm text-zinc-300">
+                                <a
+                                    href={`/projets/${project.slug}`}
+                                    class="text-sm text-zinc-300"
+                                >
                                     {project.description}
-                                </p>
+                                </a>
                             </div>
                         </div>
                     ))
@@ -91,9 +97,12 @@ const projects = [
                                 <h3 class="text-2xl font-bold mb-2 transition-all duration-500">
                                     {project.title}
                                 </h3>
-                                <p class="text-sm text-zinc-300 opacity-0 group-hover:opacity-100 hover:!opacity-100 transition-opacity duration-500">
+                                <a
+                                    href={`/projets/${project.slug}`}
+                                    class="text-sm text-zinc-300 opacity-0 group-hover:opacity-100 hover:!opacity-100 transition-opacity duration-500"
+                                >
                                     {project.description}
-                                </p>
+                                </a>
                             </div>
                         </div>
                     ))
