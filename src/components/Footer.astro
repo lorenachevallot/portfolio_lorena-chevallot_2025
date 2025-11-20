@@ -85,7 +85,7 @@ import fleur_droite from "../assets/fleur_droite.png";
                 >
                     <!-- Bouton Télécharger CV -->
                     <a
-                        href="/cv.pdf"
+                        href="/Lorena-Chevallot_CV_2026.pdf"
                         download
                         class="btn bg-white text-black hover:bg-secondary hover:text-white transition-all duration-300 ts-Button uppercase flex items-center justify-between px-2 py-2 md:px-6 lg:px-5 md:py-4 lg:py-3 h-auto min-h-0 text-[9px] md:text-sm lg:text-sm"
                         style="border-radius: 0.75rem !important; width: fit-content; min-width: 280px;"
@@ -134,7 +134,7 @@ import fleur_droite from "../assets/fleur_droite.png";
                 >
                     <!-- Behance -->
                     <a
-                        href="https://www.behance.net/votre-profil"
+                        href="https://www.behance.net/lornachevallot2"
                         target="_blank"
                         class="flex flex-col items-center gap-2"
                     >
@@ -148,7 +148,7 @@ import fleur_droite from "../assets/fleur_droite.png";
 
                     <!-- Instagram -->
                     <a
-                        href="https://www.instagram.com/votre-profil"
+                        href="https://www.instagram.com/lorena_chevallot/"
                         target="_blank"
                         class="flex flex-col items-center gap-2"
                     >
@@ -163,7 +163,7 @@ import fleur_droite from "../assets/fleur_droite.png";
 
                     <!-- LinkedIn -->
                     <a
-                        href="https://www.linkedin.com/in/votre-profil"
+                        href="https://www.linkedin.com/in/lor%C3%A9na-chevallot/"
                         target="_blank"
                         class="flex flex-col items-center gap-2"
                     >
@@ -176,9 +176,9 @@ import fleur_droite from "../assets/fleur_droite.png";
                     </a>
 
                     <!-- Mail -->
-                    <a
-                        href="mailto:votre-email@example.com"
-                        class="flex flex-col items-center gap-2"
+                    <button
+                        id="email-copy-btn-footer"
+                        class="flex flex-col items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity"
                     >
                         <img
                             src={Mail.src}
@@ -186,7 +186,7 @@ import fleur_droite from "../assets/fleur_droite.png";
                             class="w-16 h-16 lg:w-[4vw] lg:h-[4vw] lg:max-w-16 lg:max-h-16"
                         />
                         <span class="ts-Corp text-white text-xs">Mail</span>
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>
@@ -197,7 +197,7 @@ import fleur_droite from "../assets/fleur_droite.png";
         >
             <!-- Behance -->
             <a
-                href="https://www.behance.net/votre-profil"
+                href="https://www.behance.net/lornachevallot2"
                 target="_blank"
                 class="flex flex-col items-center gap-1"
             >
@@ -210,7 +210,7 @@ import fleur_droite from "../assets/fleur_droite.png";
 
             <!-- Instagram -->
             <a
-                href="https://www.instagram.com/votre-profil"
+                href="https://www.instagram.com/lorena_chevallot/"
                 target="_blank"
                 class="flex flex-col items-center gap-1"
             >
@@ -223,7 +223,7 @@ import fleur_droite from "../assets/fleur_droite.png";
 
             <!-- LinkedIn -->
             <a
-                href="https://www.linkedin.com/in/votre-profil"
+                href="https://www.linkedin.com/in/lor%C3%A9na-chevallot/"
                 target="_blank"
                 class="flex flex-col items-center gap-1"
             >
@@ -235,16 +235,16 @@ import fleur_droite from "../assets/fleur_droite.png";
             </a>
 
             <!-- Mail -->
-            <a
-                href="mailto:votre-email@example.com"
-                class="flex flex-col items-center gap-1"
+            <button
+                id="email-copy-btn-footer-mobile"
+                class="flex flex-col items-center gap-1 cursor-pointer hover:opacity-80 transition-opacity"
             >
                 <img
                     src={Mail.src}
                     alt="Mail"
                     class="w-14 h-14 md:w-16 md:h-16"
                 />
-            </a>
+            </button>
         </div>
     </div>
 
@@ -575,5 +575,51 @@ import fleur_droite from "../assets/fleur_droite.png";
     );
     if (lineContainerBottom) {
         observer.observe(lineContainerBottom);
+    }
+
+    // Gestion de la copie d'email (version desktop)
+    const emailBtnFooter = document.getElementById("email-copy-btn-footer");
+    if (emailBtnFooter) {
+        const span = emailBtnFooter.querySelector("span");
+        const originalText = span ? span.textContent : "Mail";
+        emailBtnFooter.addEventListener("click", async () => {
+            try {
+                await navigator.clipboard.writeText(
+                    "lorena.chevallot@orange.fr",
+                );
+                if (span) {
+                    span.textContent = "Copié !";
+                    setTimeout(() => {
+                        span.textContent = originalText;
+                    }, 1500);
+                }
+            } catch (err) {
+                console.error("Erreur lors de la copie:", err);
+            }
+        });
+    }
+
+    // Gestion de la copie d'email (version mobile)
+    const emailBtnFooterMobile = document.getElementById(
+        "email-copy-btn-footer-mobile",
+    );
+    if (emailBtnFooterMobile) {
+        emailBtnFooterMobile.addEventListener("click", async () => {
+            try {
+                await navigator.clipboard.writeText(
+                    "lorena.chevallot@orange.fr",
+                );
+                const img = emailBtnFooterMobile.querySelector("img");
+                const originalAlt = img ? img.alt : "Mail";
+                if (img) {
+                    img.alt = "Copié !";
+                    setTimeout(() => {
+                        img.alt = originalAlt;
+                    }, 1500);
+                }
+            } catch (err) {
+                console.error("Erreur lors de la copie:", err);
+            }
+        });
     }
 </script>
