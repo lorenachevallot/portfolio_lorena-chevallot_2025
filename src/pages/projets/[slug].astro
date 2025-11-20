@@ -10,31 +10,51 @@ import {
     parseTypographies,
     getLogicielsDetails,
     getImageUrl,
+    getImageUrlWithCache,
     formatTypoName,
     getTypoSize,
 } from "../../lib/pockebase.mjs";
 import type { ProjetRecord, LogicielRecord } from "../../lib/types";
 
 const { slug } = Astro.params;
-const projet = (await getProjetBySlug(slug!)) as ProjetRecord;
 
-if (!projet) {
-    console.error("Projet non trouvé pour le slug:", slug);
+let projet;
+let typoArray = [];
+let logicielsDetails: LogicielRecord[] = [];
+let typoFormatted = "";
+let hasCouleursOriginelles = false;
+let hasCouleurs = false;
+let nbBlocsCouleurs = 0;
+
+try {
+    projet = (await getProjetBySlug(slug!)) as ProjetRecord;
+    
+    if (!projet) {
+        console.error("Projet non trouvé pour le slug:", slug);
+        return Astro.redirect("/");
+    }
+
+    // Parser les typographies
+    typoArray = parseTypographies(projet);
+
+    // Déterminer le nombre de blocs de couleurs
+    hasCouleursOriginelles = Boolean(projet?.couleurs_originelles);
+    hasCouleurs = Boolean(projet?.couleurs);
+    nbBlocsCouleurs = (hasCouleursOriginelles ? 1 : 0) + (hasCouleurs ? 1 : 0);
+
+    // Récupérer les détails des logiciels - avec gestion d'erreur
+    try {
+        logicielsDetails = (await getLogicielsDetails(projet)) as LogicielRecord[];
+    } catch (error) {
+        console.warn("Impossible de récupérer les détails des logiciels:", error);
+        logicielsDetails = [];
+    }
+
+    typoFormatted = projet.typo_nom ? formatTypoName(projet.typo_nom) : "";
+} catch (error) {
+    console.error("Erreur lors du chargement du projet:", error);
     return Astro.redirect("/");
 }
-
-// Parser les typographies
-const typoArray = parseTypographies(projet);
-
-// Déterminer le nombre de blocs de couleurs
-const hasCouleursOriginelles = Boolean(projet?.couleurs_originelles);
-const hasCouleurs = Boolean(projet?.couleurs);
-const nbBlocsCouleurs = (hasCouleursOriginelles ? 1 : 0) + (hasCouleurs ? 1 : 0);
-
-// Récupérer les détails des logiciels
-const logicielsDetails = (await getLogicielsDetails(projet)) as LogicielRecord[];
-
-const typoFormatted = projet.typo_nom ? formatTypoName(projet.typo_nom) : "";
 ---
 
 <Layout title={`${projet.nom} - Loréna Chevallot`}>
@@ -547,6 +567,22 @@ const typoFormatted = projet.typo_nom ? formatTypoName(projet.typo_nom) : "";
         )
     }
 </Layout>
+
+<script>
+    // Gérer les erreurs d'images gracieusement
+    document.addEventListener('DOMContentLoaded', () => {
+        const images = document.querySelectorAll('img');
+        images.forEach((img) => {
+            img.addEventListener('error', () => {
+                console.warn(`Impossible de charger l'image: ${img.src}`);
+                // Garder l'image visible mais griser
+                img.style.opacity = '0.3';
+                img.style.border = '1px solid rgba(255, 255, 255, 0.2)';
+                img.setAttribute('alt', 'Image non disponible');
+            });
+        });
+    });
+</script>
 
 <style is:inline>
     {typoArray.map(({ fontFamily }) => {
