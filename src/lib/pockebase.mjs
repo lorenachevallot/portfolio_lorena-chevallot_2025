@@ -116,10 +116,15 @@ export async function getLogicielsDetails(projet) {
  * @param {string} collectionId - L'ID de la collection
  * @param {string} recordId - L'ID de l'enregistrement
  * @param {string} filename - Le nom du fichier
+ * @param {string} token - Le token d'authentification (optionnel)
  * @returns {string} L'URL complète de l'image
  */
-export function getImageUrl(collectionId, recordId, filename) {
-    return `${baseUrl}/api/files/${collectionId}/${recordId}/${filename}`;
+export function getImageUrl(collectionId, recordId, filename, token = "") {
+    let url = `${baseUrl}/api/files/${collectionId}/${recordId}/${filename}`;
+    if (token) {
+        url += `?token=${token}`;
+    }
+    return url;
 }
 
 /**
