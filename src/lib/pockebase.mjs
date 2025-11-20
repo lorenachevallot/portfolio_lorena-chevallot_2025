@@ -20,66 +20,106 @@ const baseUrl = isBrowser
     ? PUBLIC_PB_URL
     : envUrl || (isDevMode ? DEV_URL : INTERNAL_URL);
 
-const pb = new PocketBase(baseUrl);
+export const pb = new PocketBase(baseUrl);
 
-export default pb;
+export const getFileUrl = (collectionId, recordId, filename) => {
+    if (!filename) return null;
+    const fileBaseUrl = isDevMode ? DEV_URL : PUBLIC_PB_URL;
+    return `${fileBaseUrl}/api/files/${collectionId}/${recordId}/${filename}`;
+};
 
-/**
- * Récupère tous les projets de la collection "projets"
- * @returns {Promise<Array>} Liste des projets
- */
+export const getFileUrlWithCache = (
+    collectionId,
+    recordId,
+    filename,
+    updated
+) => {
+    if (!filename) return null;
+    const fileBaseUrl = isDevMode ? DEV_URL : PUBLIC_PB_URL;
+    const timestamp = updated ? new Date(updated).getTime() : Date.now();
+    return `${fileBaseUrl}/api/files/${collectionId}/${recordId}/${filename}?t=${timestamp}`;
+};
+
+const COLLECTION_PROJETS = "projets";
+
+const formatProjet = (projet) => {
+    // Fonction helper pour générer les URLs d'images
+    const getImg = (field) =>
+        getFileUrlWithCache(COLLECTION_PROJETS, projet.id, projet[field], projet.updated);
+
+    return {
+        id: projet.id,
+        collectionId: projet.collectionId,
+        nom: projet.nom || "",
+        description: projet.description || "",
+        contexte: projet.contexte || "",
+        pourquoi: projet.pourquoi || "",
+        sloggan: projet.sloggan || "",
+        ellipse: projet.ellipse || "",
+        logo: getImg("logo"),
+        couleurs_originelles: projet.couleurs_originelles || "",
+        couleurs: projet.couleurs || "",
+        typo_nom: projet.typo_nom || "",
+        typo: projet.typo || {},
+        logiciels: projet.logiciels || [],
+        mockups: (projet.mockups || []).map((filename) =>
+            getFileUrlWithCache(COLLECTION_PROJETS, projet.id, filename, projet.updated)
+        ),
+        livrable_image: getImg("livrable_image"),
+        image_contexte: getImg("image_contexte"),
+        image_pourquoi: getImg("image_pourquoi"),
+        concept_visualisation: getImg("concept_visualisation"),
+        recherche_logos: (projet.recherche_logos || []).map((filename) =>
+            getFileUrlWithCache(COLLECTION_PROJETS, projet.id, filename, projet.updated)
+        ),
+        moodboard: getImg("moodboard"),
+        maquette_visualisation: getImg("maquette_visualisation"),
+        slug: projet.slug || "",
+        created: projet.created,
+        updated: projet.updated,
+    };
+};
+
 export async function getProjets() {
     try {
-        const records = await pb.collection("projets").getFullList({
+        const records = await pb.collection(COLLECTION_PROJETS).getFullList({
             sort: "-created",
             requestKey: `all-projets-${Date.now()}`,
         });
-        return records;
-    } catch (error) {
-        console.error("Erreur lors de la récupération des projets:", error);
+        return records.map(formatProjet);
+    } catch (err) {
+        console.error("Erreur lors de la récupération des projets :", err);
         return [];
     }
 }
 
-/**
- * Récupère un projet spécifique par son ID
- * @param {string} id - L'ID du projet
- * @returns {Promise<Object|null>} Le projet ou null si non trouvé
- */
 export async function getProjetById(id) {
     try {
-        const record = await pb.collection("projets").getOne(id);
-        return record;
-    } catch (error) {
-        console.error("Erreur lors de la récupération du projet:", error);
+        const record = await pb.collection(COLLECTION_PROJETS).getOne(id);
+        return formatProjet(record);
+    } catch (err) {
+        console.error("Erreur lors de la récupération du projet :", err);
         return null;
     }
 }
 
-/**
- * Récupère un projet spécifique par son slug
- * @param {string} slug - Le slug du projet
- * @returns {Promise<Object|null>} Le projet ou null si non trouvé
- */
 export async function getProjetBySlug(slug) {
     try {
         const record = await pb
-            .collection("projets")
+            .collection(COLLECTION_PROJETS)
             .getFirstListItem(`slug = "${slug}"`, {
                 requestKey: `projet-${slug}-${Date.now()}`,
             });
-        return record;
-    } catch (error) {
-        console.error("Erreur lors de la récupération du projet par slug:", error);
+        return formatProjet(record);
+    } catch (err) {
+        console.error(
+            "Erreur lors de la récupération du projet par slug :",
+            err
+        );
         return null;
     }
 }
 
-/**
- * Récupère un logiciel spécifique par son ID
- * @param {string} id - L'ID du logiciel
- * @returns {Promise<Object|null>} Le logiciel ou null si non trouvé
- */
 export async function getLogicielById(id) {
     try {
         const record = await pb.collection("logiciels").getOne(id);
@@ -90,11 +130,6 @@ export async function getLogicielById(id) {
     }
 }
 
-/**
- * Parse les typographies d'un projet
- * @param {Object} projet - Le projet contenant les typographies
- * @returns {Array} Tableau des typographies avec name et fontFamily
- */
 export function parseTypographies(projet) {
     let typoArray = [];
     if (projet && projet.typo) {
@@ -106,11 +141,6 @@ export function parseTypographies(projet) {
     return typoArray;
 }
 
-/**
- * Récupère les détails des logiciels d'un projet
- * @param {Object} projet - Le projet contenant les IDs des logiciels
- * @returns {Promise<Array>} Tableau des détails des logiciels
- */
 export async function getLogicielsDetails(projet) {
     let logicielsDetails = [];
     if (projet && projet.logiciels && projet.logiciels.length > 0) {
@@ -125,39 +155,6 @@ export async function getLogicielsDetails(projet) {
     return logicielsDetails;
 }
 
-/**
- * Génère l'URL d'une image PocketBase
- * @param {string} collectionId - L'ID de la collection
- * @param {string} recordId - L'ID de l'enregistrement
- * @param {string} filename - Le nom du fichier
- * @returns {string} L'URL complète de l'image
- */
-export function getImageUrl(collectionId, recordId, filename) {
-    if (!filename) return null;
-    const fileBaseUrl = isDevMode ? DEV_URL : PUBLIC_PB_URL;
-    return `${fileBaseUrl}/api/files/${collectionId}/${recordId}/${filename}`;
-}
-
-/**
- * Génère l'URL d'une image PocketBase avec cache busting (timestamp)
- * @param {string} collectionId - L'ID de la collection
- * @param {string} recordId - L'ID de l'enregistrement
- * @param {string} filename - Le nom du fichier
- * @param {string} updated - La date de dernière modification du record
- * @returns {string} L'URL complète de l'image avec timestamp
- */
-export function getImageUrlWithCache(collectionId, recordId, filename, updated) {
-    if (!filename) return null;
-    const fileBaseUrl = isDevMode ? DEV_URL : PUBLIC_PB_URL;
-    const timestamp = updated ? new Date(updated).getTime() : Date.now();
-    return `${fileBaseUrl}/api/files/${collectionId}/${recordId}/${filename}?t=${timestamp}`;
-}
-
-/**
- * Formate le nom d'une typographie pour Google Fonts
- * @param {string} typoName - Le nom de la typographie
- * @returns {string} Le nom formaté
- */
 export function formatTypoName(typoName) {
     return typoName
         .split(" ")
@@ -165,17 +162,13 @@ export function formatTypoName(typoName) {
         .join("+");
 }
 
-/**
- * Détermine la taille CSS d'une typographie selon son type
- * @param {string} name - Le nom du type de typographie (h1, h2, etc.)
- * @returns {string} La classe Tailwind CSS pour la taille
- */
 export function getTypoSize(name) {
     const lowerName = name.toLowerCase();
-    if (lowerName.includes('h1')) return 'text-6xl';
-    if (lowerName.includes('h2')) return 'text-5xl';
-    if (lowerName.includes('h3')) return 'text-4xl';
-    if (lowerName.includes('paragraph') || lowerName.includes('p')) return 'text-2xl';
-    if (lowerName.includes('accent')) return 'text-3xl';
-    return 'text-4xl';
+    if (lowerName.includes("h1")) return "text-6xl";
+    if (lowerName.includes("h2")) return "text-5xl";
+    if (lowerName.includes("h3")) return "text-4xl";
+    if (lowerName.includes("paragraph") || lowerName.includes("p"))
+        return "text-2xl";
+    if (lowerName.includes("accent")) return "text-3xl";
+    return "text-4xl";
 }
