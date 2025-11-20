@@ -1,5 +1,4 @@
 ---
-// @ts-nocheck
 export const prerender = false;
 
 import Layout from "../../layouts/Layout.astro";
@@ -10,8 +9,8 @@ import {
     getProjetBySlug,
     parseTypographies,
     getLogicielsDetails,
-    getFileUrl,
-    getFileUrlWithCache,
+    getImageUrl,
+    getImageUrlWithCache,
     formatTypoName,
     getTypoSize,
 } from "../../lib/pockebase.mjs";
@@ -92,7 +91,11 @@ try {
                     {
                         projet.logo && (
                             <img
-                                src={projet.logo}
+                                src={getImageUrl(
+                                    projet.collectionId,
+                                    projet.id,
+                                    projet.logo,
+                                )}
                                 alt={projet.nom}
                                 class="w-48 lg:w-72 h-48 lg:h-72 object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] relative z-30"
                             />
@@ -130,7 +133,11 @@ try {
                         )}
                         <div class="rounded-2xl overflow-hidden relative z-10">
                             <img
-                                src={projet.previsualisation}
+                                src={getImageUrl(
+                                    projet.collectionId,
+                                    projet.id,
+                                    projet.previsualisation,
+                                )}
                                 alt={projet.nom}
                                 class="w-[90vw] lg:w-[70vw] mx-auto h-auto object-cover"
                             />
@@ -148,7 +155,7 @@ try {
                                 (logiciel: LogicielRecord) => (
                                     <div class="flex flex-col items-center gap-1 lg:gap-2">
                                         <img
-                                            src={getFileUrl(
+                                            src={getImageUrl(
                                                 logiciel.collectionId,
                                                 logiciel.id,
                                                 logiciel.logo,
@@ -192,7 +199,11 @@ try {
                         {projet.image_contexte && (
                             <div class="absolute top-1/2 -right-16 transform -translate-y-1/2 w-2/5 hidden lg:block">
                                 <img
-                                    src={projet.image_contexte}
+                                    src={getImageUrl(
+                                        projet.collectionId,
+                                        projet.id,
+                                        projet.image_contexte,
+                                    )}
                                     alt="Image contexte"
                                     class="w-full h-auto rounded-lg"
                                 />
@@ -327,8 +338,12 @@ try {
                                     <div class="flex justify-center lg:justify-start">
                                         <div class="bg-zinc-900/50 backdrop-blur-sm p-4 lg:p-8 rounded-2xl border border-white shadow-[0_0_15px_rgba(255,255,255,0.5)] flex items-center justify-center h-40 lg:h-[40dvh] aspect-square">
                                             <img
-                                                src={image}
-                                                alt="Logo"
+                                                src={getImageUrl(
+                                                    projet.collectionId,
+                                                    projet.id,
+                                                    projet.logo,
+                                                )}
+                                                alt="Logo final"
                                                 class="w-full h-full object-contain"
                                             />
                                         </div>
