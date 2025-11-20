@@ -148,7 +148,7 @@ const carouselData = [
         >
             <div class="w-full h-full flex justify-center items-center">
                 <div
-                    class="carousel-main-card relative bg-gradient-to-br from-zinc-900/95 to-zinc-950/95 rounded-2xl backdrop-blur-md w-full flex flex-col items-start px-4 py-5 shadow-2xl border border-violet-500/20 h-[320px] sm:h-[340px] md:h-[360px] lg:h-[380px] overflow-y-auto transition-all duration-300"
+                    class="carousel-main-card relative bg-gradient-to-br from-zinc-900/95 to-zinc-950/95 rounded-2xl backdrop-blur-md w-full flex flex-col items-start px-4 py-5 shadow-2xl border border-violet-500/20 h-[320px] sm:h-[340px] md:h-[360px] lg:h-[280px] overflow-y-auto transition-all duration-300"
                     id="carousel-main"
                 >
                     {
@@ -217,11 +217,11 @@ const carouselData = [
                                 class="carousel-preview bg-gradient-to-br from-zinc-900/95 to-zinc-950/95 rounded-2xl backdrop-blur-md w-full flex-1 flex items-center justify-center cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-violet-500/20 border border-transparent hover:border-violet-500/30 py-3 text-center"
                                 data-step={step}
                             >
-                                <div class="flex flex-col h-full justify-start items-center gap-2 px-3 py-1 lg:p-3">
+                                <div class="flex flex-col h-full justify-start items-center gap-1 px-2 py-1 lg:p-1.5">
                                     <div class="carousel-preview-icon">
                                         {typeof carouselData[step].icon ===
                                         "string" ? (
-                                            <div class="text-2xl lg:text-3xl opacity-90">
+                                            <div class="text-2xl lg:text-xl opacity-90">
                                                 {carouselData[step].icon}
                                             </div>
                                         ) : (
@@ -230,11 +230,11 @@ const carouselData = [
                                                     carouselData[step].icon.src
                                                 }
                                                 alt={carouselData[step].title}
-                                                class="h-6 lg:h-9 w-auto opacity-90"
+                                                class="h-6 lg:h-6 w-auto opacity-90"
                                             />
                                         )}
                                     </div>
-                                    <span class="carousel-preview-title text-[10px] sm:text-xs text-zinc-200 font-medium">
+                                    <span class="carousel-preview-title text-[10px] sm:text-xs lg:text-[10px] text-zinc-200 font-medium">
                                         <span class="lg:hidden">
                                             {carouselData[step].shortTitle}
                                         </span>

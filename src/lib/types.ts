@@ -37,7 +37,9 @@ export interface ProjetRecord {
     texte_strat_3?: string;
     texte_logo?: string;
     contour_logo_final?: string;
+    ancien_logo?: string;
     recherche_graphique?: string[];
+    deuxieme_logo_final?: string;
     couleurs_originelles?: string;
     couleurs?: string;
     texte_couleurs?: string;

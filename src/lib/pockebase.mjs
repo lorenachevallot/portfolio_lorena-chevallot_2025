@@ -75,3 +75,76 @@ export async function getLogicielById(id) {
         return null;
     }
 }
+
+/**
+ * Parse les typographies d'un projet
+ * @param {Object} projet - Le projet contenant les typographies
+ * @returns {Array} Tableau des typographies avec name et fontFamily
+ */
+export function parseTypographies(projet) {
+    let typoArray = [];
+    if (projet && projet.typo) {
+        const typoData = typeof projet.typo === "string" ? JSON.parse(projet.typo) : projet.typo;
+        if (typoData.typography && Array.isArray(typoData.typography)) {
+            typoArray = typoData.typography;
+        }
+    }
+    return typoArray;
+}
+
+/**
+ * Récupère les détails des logiciels d'un projet
+ * @param {Object} projet - Le projet contenant les IDs des logiciels
+ * @returns {Promise<Array>} Tableau des détails des logiciels
+ */
+export async function getLogicielsDetails(projet) {
+    let logicielsDetails = [];
+    if (projet && projet.logiciels && projet.logiciels.length > 0) {
+        const results = await Promise.all(
+            projet.logiciels.map(async (logicielId) => {
+                const logiciel = await getLogicielById(logicielId);
+                return logiciel;
+            }),
+        );
+        logicielsDetails = results.filter((l) => l !== null);
+    }
+    return logicielsDetails;
+}
+
+/**
+ * Génère l'URL d'une image PocketBase
+ * @param {string} collectionId - L'ID de la collection
+ * @param {string} recordId - L'ID de l'enregistrement
+ * @param {string} filename - Le nom du fichier
+ * @returns {string} L'URL complète de l'image
+ */
+export function getImageUrl(collectionId, recordId, filename) {
+    return `${baseUrl}/api/files/${collectionId}/${recordId}/${filename}`;
+}
+
+/**
+ * Formate le nom d'une typographie pour Google Fonts
+ * @param {string} typoName - Le nom de la typographie
+ * @returns {string} Le nom formaté
+ */
+export function formatTypoName(typoName) {
+    return typoName
+        .split(" ")
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+        .join("+");
+}
+
+/**
+ * Détermine la taille CSS d'une typographie selon son type
+ * @param {string} name - Le nom du type de typographie (h1, h2, etc.)
+ * @returns {string} La classe Tailwind CSS pour la taille
+ */
+export function getTypoSize(name) {
+    const lowerName = name.toLowerCase();
+    if (lowerName.includes('h1')) return 'text-6xl';
+    if (lowerName.includes('h2')) return 'text-5xl';
+    if (lowerName.includes('h3')) return 'text-4xl';
+    if (lowerName.includes('paragraph') || lowerName.includes('p')) return 'text-2xl';
+    if (lowerName.includes('accent')) return 'text-3xl';
+    return 'text-4xl';
+}

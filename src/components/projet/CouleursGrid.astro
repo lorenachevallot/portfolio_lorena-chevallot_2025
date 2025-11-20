@@ -1,4 +1,6 @@
 ---
+import SectionTitle from "./SectionTitle.astro";
+
 interface Props {
     couleurs: Array<{ name: string; hex: string }> | string | any;
     titre: string;
@@ -36,9 +38,9 @@ if (nbCouleurs === 4) {
 ---
 
 <div
-    class="bg-zinc-900/50 backdrop-blur-sm p-6 rounded-2xl border border-zinc-800"
+    class="bg-zinc-900/50 backdrop-blur-sm p-8 rounded-2xl border border-zinc-800"
 >
-    <h3 class="text-xl font-bold mb-4">{titre}</h3>
+    <SectionTitle title={titre} size="medium" withLine={false} />
     <div class={gridClass}>
         {
             couleursArray.map((couleur) => (

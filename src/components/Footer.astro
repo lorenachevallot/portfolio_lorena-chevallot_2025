@@ -19,8 +19,8 @@ import fleur_droite from "../assets/fleur_droite.png";
     >
         <!-- Titre principal en dehors de la grille -->
         <h2
-            class="tracking-widest mb-6 md:mb-8 lg:mb-[3vh] main-title-font drop-shadow-figma text-white uppercase mt-8 md:mt-10 lg:mt-[5vh] font-extralight leading-tight whitespace-nowrap"
-            style="font-size: 48px !important; font-weight: 200 !important;"
+            class="tracking-widest mb-6 md:mb-8 lg:mb-[3vh] main-title-font uppercase mt-8 md:mt-10 lg:mt-[5vh] font-extralight leading-tight footer-title"
+            style="font-weight: 200 !important; color: rgb(255, 255, 255) !important; opacity: 1 !important; text-shadow: 0 0 0 transparent !important;"
         >
             CONTACTEZ-MOI
         </h2>
@@ -516,6 +516,33 @@ import fleur_droite from "../assets/fleur_droite.png";
     @media (min-width: 1024px) {
         .footer-nav-link {
             font-size: 24px; /* Desktop - taille fixe */
+        }
+    }
+
+    /* Titre CONTACTEZ-MOI - Responsive */
+    h2.footer-title {
+        font-size: 32px !important;
+        line-height: 1.2;
+        word-break: break-word;
+        color: #ffffff !important;
+        opacity: 1 !important;
+    }
+
+    @media (min-width: 768px) {
+        h2.footer-title {
+            font-size: 36px !important;
+        }
+    }
+
+    @media (min-width: 1024px) {
+        h2.footer-title {
+            font-size: 56px !important;
+            line-height: 1;
+            white-space: nowrap;
+            letter-spacing: 0.1em;
+            color: white !important;
+            filter: none !important;
+            text-shadow: none !important;
         }
     }
 </style>
