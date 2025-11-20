@@ -19,6 +19,7 @@ const { slug } = Astro.params;
 const projet = (await getProjetBySlug(slug!)) as ProjetRecord;
 
 if (!projet) {
+    console.error("Projet non trouvé pour le slug:", slug);
     return Astro.redirect("/");
 }
 

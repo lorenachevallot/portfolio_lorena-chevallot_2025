@@ -1,13 +1,24 @@
 import PocketBase from "pocketbase";
 
 // Détection de l'environnement
-// En développement et build, utiliser localhost
-// En production runtime, utiliser l'URL de production
-const isDev = import.meta.env.DEV;
-const isSSR = import.meta.env.SSR;
-const baseUrl = (isDev || isSSR)
-    ? "http://127.0.0.1:8090"
-    : "https://portfolio.lorena-chevallot.fr";
+const isBrowser = typeof window !== "undefined";
+const PUBLIC_PB_URL = "https://portfolio.lorena-chevallot.fr";
+const INTERNAL_URL = "http://127.0.0.1:8090";
+const DEV_URL = "http://127.0.0.1:8090";
+
+const envUrl =
+    typeof process !== "undefined" && process.env?.POCKETBASE_URL
+        ? process.env.POCKETBASE_URL
+        : null;
+
+const isDevMode =
+    typeof process !== "undefined" &&
+    (process.env?.NODE_ENV === "development" ||
+        process.env?.ASTRO_BUILDTIME === "false");
+
+const baseUrl = isBrowser
+    ? PUBLIC_PB_URL
+    : envUrl || (isDevMode ? DEV_URL : INTERNAL_URL);
 
 const pb = new PocketBase(baseUrl);
 
@@ -21,6 +32,7 @@ export async function getProjets() {
     try {
         const records = await pb.collection("projets").getFullList({
             sort: "-created",
+            requestKey: `all-projets-${Date.now()}`,
         });
         return records;
     } catch (error) {
@@ -51,10 +63,12 @@ export async function getProjetById(id) {
  */
 export async function getProjetBySlug(slug) {
     try {
-        const records = await pb.collection("projets").getFullList({
-            filter: `slug = "${slug}"`,
-        });
-        return records.length > 0 ? records[0] : null;
+        const record = await pb
+            .collection("projets")
+            .getFirstListItem(`slug = "${slug}"`, {
+                requestKey: `projet-${slug}-${Date.now()}`,
+            });
+        return record;
     } catch (error) {
         console.error("Erreur lors de la récupération du projet par slug:", error);
         return null;
@@ -116,15 +130,27 @@ export async function getLogicielsDetails(projet) {
  * @param {string} collectionId - L'ID de la collection
  * @param {string} recordId - L'ID de l'enregistrement
  * @param {string} filename - Le nom du fichier
- * @param {string} token - Le token d'authentification (optionnel)
  * @returns {string} L'URL complète de l'image
  */
-export function getImageUrl(collectionId, recordId, filename, token = "") {
-    let url = `${baseUrl}/api/files/${collectionId}/${recordId}/${filename}`;
-    if (token) {
-        url += `?token=${token}`;
-    }
-    return url;
+export function getImageUrl(collectionId, recordId, filename) {
+    if (!filename) return null;
+    const fileBaseUrl = isDevMode ? DEV_URL : PUBLIC_PB_URL;
+    return `${fileBaseUrl}/api/files/${collectionId}/${recordId}/${filename}`;
+}
+
+/**
+ * Génère l'URL d'une image PocketBase avec cache busting (timestamp)
+ * @param {string} collectionId - L'ID de la collection
+ * @param {string} recordId - L'ID de l'enregistrement
+ * @param {string} filename - Le nom du fichier
+ * @param {string} updated - La date de dernière modification du record
+ * @returns {string} L'URL complète de l'image avec timestamp
+ */
+export function getImageUrlWithCache(collectionId, recordId, filename, updated) {
+    if (!filename) return null;
+    const fileBaseUrl = isDevMode ? DEV_URL : PUBLIC_PB_URL;
+    const timestamp = updated ? new Date(updated).getTime() : Date.now();
+    return `${fileBaseUrl}/api/files/${collectionId}/${recordId}/${filename}?t=${timestamp}`;
 }
 
 /**
