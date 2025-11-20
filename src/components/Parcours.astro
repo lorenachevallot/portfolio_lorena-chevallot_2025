@@ -11,28 +11,24 @@
             >
                 PARCOURS
             </h2>
+        </div>
+    </div>
 
-            <!-- Ligne décorative -->
-            <div
-                class="lg:hidden mb-6"
-                style="width: fit-content; height: 2px; background: #ffffff; box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.4);"
-            >
-                <span
-                    class="uppercase tracking-widest"
-                    style="font-size: 22px !important; font-weight: 200 !important; opacity: 0; pointer-events: none;"
-                    >PARCOURS</span
-                >
-            </div>
+    <!-- Ligne décorative mobile pleine largeur -->
+    <div
+        style="display: block; width: 100%; height: 2px; background: #ffffff; box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.4); margin: 16px 0;"
+        class="lg:hidden"
+    >
+    </div>
 
+    <!-- Ligne décorative desktop + FORMATION -->
+    <div class="w-full px-4 md:px-16 lg:px-32">
+        <div class="w-full max-w-[700px] lg:max-w-[1200px]">
+            <!-- Ligne décorative desktop -->
             <div
                 class="hidden lg:block"
                 style="width: fit-content; height: 2px; background: #ffffff; box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.4); margin-bottom: 32px;"
             >
-                <span
-                    class="uppercase tracking-widest"
-                    style="font-size: 72px !important; font-weight: 200 !important; opacity: 0; pointer-events: none;"
-                    >PARCOURS</span
-                >
             </div>
 
             <h3
@@ -51,7 +47,9 @@
             <!-- Frise verticale mobile/tablette -->
             <div class="w-full px-4 md:px-16 lg:hidden mt-4 md:mt-8">
                 <!-- Grande div conteneur en flex-col -->
-                <div class="flex flex-col md:max-w-md md:mx-auto">
+                <div
+                    class="flex flex-col md:max-w-md md:mx-auto gap-4 md:gap-6"
+                >
                     <!-- Barre de continuation en haut -->
                     <div class="flex flex-row gap-2 items-start timeline-item">
                         <!-- Espace pour date -->
@@ -374,6 +372,26 @@
 </section>
 
 <style>
+    /* Ligne décorative mobile */
+    .decorative-line-mobile {
+        display: block !important;
+        width: 100% !important;
+        max-width: none !important;
+        height: 2px !important;
+        background: #ffffff !important;
+        box-shadow:
+            0 0 10px rgba(255, 255, 255, 0.8),
+            0 0 20px rgba(255, 255, 255, 0.6),
+            0 0 30px rgba(255, 255, 255, 0.4) !important;
+        margin: 0 auto 24px auto !important;
+    }
+
+    @media (min-width: 1024px) {
+        .decorative-line-mobile {
+            display: none !important;
+        }
+    }
+
     /* Animation hover sur les points */
     .relative:has(.rounded-full.bg-black):hover .absolute.opacity-100 {
         filter: blur(20px);
