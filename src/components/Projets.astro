@@ -3,194 +3,201 @@ import Beeus from "../assets/beeus.webp";
 import ShareAmi from "../assets/shareami.webp";
 import Vertify from "../assets/vertify.webp";
 const projects = [
-    {
-        id: 1,
-        title: "BeeUs",
-        description: "En savoir plus",
-        image: Beeus,
-        slug: "beeus",
-    },
-    {
-        id: 2,
-        title: "ShareAmi",
-        description: "En savoir plus",
-        image: ShareAmi,
-        slug: "shareami",
-    },
-    {
-        id: 3,
-        title: "Vertify",
-        description: "En savoir plus",
-        image: Vertify,
-        slug: "vertify",
-    },
+  {
+    id: 1,
+    title: "BeeUs",
+    description: "En savoir plus",
+    image: Beeus,
+    slug: "beeus",
+  },
+  {
+    id: 2,
+    title: "ShareAmi",
+    description: "En savoir plus",
+    image: ShareAmi,
+    slug: "shareami",
+  },
+  {
+    id: 3,
+    title: "Vertify",
+    description: "En savoir plus",
+    image: Vertify,
+    slug: "vertify",
+  },
 ];
 ---
 
 <section
-    id="projets"
-    class="relative text-white px-4 md:px-8 lg:px-16 py-24 md:py-20 lg:py-23"
+  id="projets"
+  class="relative text-white px-4 md:px-8 lg:px-16 py-24 md:py-20 lg:py-23"
 >
-    <div class="w-full">
-        <!-- Titre de la section -->
-        <div class="mb-8 lg:mb-10 w-full max-w-[700px] lg:max-w-[1200px]">
-            <h2>Projets</h2>
-        </div>
-
-        <!-- Ligne décorative -->
-        <div class="mb-6 lg:mb-8 w-full max-w-[700px] lg:max-w-[1200px]">
-            <div
-                class="h-0.5 bg-white mb-4 w-full"
-                style="box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6);"
-            >
-            </div>
-        </div>
-
-        <!-- Cartes avec animation de zoom -->
-        <div class="w-full max-w-[1200px] mx-auto">
-            <!-- Version mobile/tablette : empilé verticalement avec scroll -->
-            <div class="lg:hidden flex flex-col gap-6 h-auto" id="mobile-cards">
-                {
-                    projects.map((project, index) => (
-                        <div
-                            class="mobile-card h-[400px] transition-all duration-300 rounded-2xl overflow-hidden bg-gradient-to-br from-zinc-900/95 to-zinc-950/95 backdrop-blur-md border border-white/10 shadow-lg relative"
-                            data-index={index}
-                        >
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10 transition-all duration-300" />
-
-                            <img
-                                src={project.image.src}
-                                alt={project.title}
-                                class="absolute inset-0 w-full h-full object-cover"
-                            />
-
-                            <div class="relative z-20 h-full flex flex-col justify-end p-6">
-                                <h3 class="text-2xl font-bold mb-2 transition-all duration-500">
-                                    {project.title}
-                                </h3>
-                                <a
-                                    href={`/projets/${project.slug}`}
-                                    class="text-sm text-zinc-300"
-                                >
-                                    {project.description}
-                                </a>
-                            </div>
-                        </div>
-                    ))
-                }
-            </div>
-
-            <!-- Version desktop : côte à côte avec hover -->
-            <div class="hidden lg:flex gap-4 h-[450px] group">
-                {
-                    projects.map((project) => (
-                        <div class="relative flex-1 transition-all duration-500 ease-in-out hover:flex-[2] hover:scale-105 group-hover:scale-95 hover:!scale-105 rounded-2xl overflow-hidden bg-gradient-to-br from-zinc-900/95 to-zinc-950/95 backdrop-blur-md border border-white/10 hover:border-violet-500/30 shadow-lg hover:shadow-2xl hover:shadow-violet-500/20 cursor-pointer">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10" />
-
-                            <img
-                                src={project.image.src}
-                                alt={project.title}
-                                class="absolute inset-0 w-full h-full object-cover"
-                            />
-
-                            <div class="relative z-20 h-full flex flex-col justify-end p-6">
-                                <h3 class="text-2xl font-bold mb-2 transition-all duration-500">
-                                    {project.title}
-                                </h3>
-                                <a
-                                    href={`/projets/${project.slug}`}
-                                    class="text-sm text-zinc-300 opacity-0 group-hover:opacity-100 hover:!opacity-100 transition-opacity duration-500"
-                                >
-                                    {project.description}
-                                </a>
-                            </div>
-                        </div>
-                    ))
-                }
-            </div>
-        </div>
+  <div class="w-full">
+    <!-- Titre de la section -->
+    <div class="mb-8 lg:mb-10 w-full max-w-[700px] lg:max-w-[1200px]">
+      <h2>Projets</h2>
     </div>
+
+    <!-- Ligne décorative -->
+    <div class="mb-6 lg:mb-8 w-full max-w-[700px] lg:max-w-[1200px]">
+      <div
+        class="h-0.5 bg-white mb-4 w-full"
+        style="box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6);"
+      >
+      </div>
+    </div>
+
+    <!-- Cartes avec animation de zoom -->
+    <div class="w-full max-w-[1200px] mx-auto">
+      <!-- Version mobile/tablette : empilé verticalement avec scroll -->
+      <div class="lg:hidden flex flex-col gap-6 h-auto" id="mobile-cards">
+        {
+          projects.map((project, index) => (
+            <article
+              class="mobile-card h-[400px] transition-all duration-300 rounded-2xl overflow-hidden bg-gradient-to-br from-zinc-900/95 to-zinc-950/95 backdrop-blur-md border border-white/10 shadow-lg relative"
+              data-index={index}
+            >
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10 transition-all duration-300" />
+
+              <img
+                src={project.image.src}
+                alt={`Projet ${project.title} - Aperçu du design`}
+                class="absolute inset-0 w-full h-full object-cover"
+                loading="lazy"
+                decoding="async"
+                width="400"
+                height="400"
+              />
+
+              <div class="relative z-20 h-full flex flex-col justify-end p-6">
+                <h3 class="text-2xl font-bold mb-2 transition-all duration-500">
+                  {project.title}
+                </h3>
+                <a
+                  href={`/projets/${project.slug}`}
+                  class="text-sm text-zinc-300"
+                  aria-label={`Voir le projet ${project.title}`}
+                >
+                  {project.description}
+                </a>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+
+      <!-- Version desktop : côte à côte avec hover -->
+      <div class="hidden lg:flex gap-4 h-[450px] group">
+        {
+          projects.map((project) => (
+            <article class="relative flex-1 transition-all duration-500 ease-in-out hover:flex-[2] hover:scale-105 group-hover:scale-95 hover:!scale-105 rounded-2xl overflow-hidden bg-gradient-to-br from-zinc-900/95 to-zinc-950/95 backdrop-blur-md border border-white/10 hover:border-violet-500/30 shadow-lg hover:shadow-2xl hover:shadow-violet-500/20 cursor-pointer">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10" />
+
+              <img
+                src={project.image.src}
+                alt={`Projet ${project.title} - Aperçu du design`}
+                class="absolute inset-0 w-full h-full object-cover"
+                loading="lazy"
+                decoding="async"
+                width="600"
+                height="450"
+              />
+
+              <div class="relative z-20 h-full flex flex-col justify-end p-6">
+                <h3 class="text-2xl font-bold mb-2 transition-all duration-500">
+                  {project.title}
+                </h3>
+                <a
+                  href={`/projets/${project.slug}`}
+                  class="text-sm text-zinc-300 opacity-0 group-hover:opacity-100 hover:!opacity-100 transition-opacity duration-500"
+                  aria-label={`Voir le projet ${project.title}`}
+                >
+                  {project.description}
+                </a>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </div>
 </section>
 
 <script>
-    // Script pour version mobile uniquement
-    function initMobileCardsBrightness() {
-        if (window.innerWidth >= 1024) return;
+  // Script pour version mobile uniquement
+  function initMobileCardsBrightness() {
+    if (window.innerWidth >= 1024) return;
 
-        const cards = document.querySelectorAll(".mobile-card");
-        if (!cards.length) return;
+    const cards = document.querySelectorAll(".mobile-card");
+    if (!cards.length) return;
 
-        function updateCardBrightness() {
-            const centerY = window.innerHeight / 2;
-            let closestCard: HTMLElement | null = null;
-            let minDistance = Infinity;
+    function updateCardBrightness() {
+      const centerY = window.innerHeight / 2;
+      let closestCard: HTMLElement | null = null;
+      let minDistance = Infinity;
 
-            // Trouver la carte la plus proche du centre de l'écran
-            cards.forEach((card) => {
-                const cardRect = card.getBoundingClientRect();
-                const cardCenterY = cardRect.top + cardRect.height / 2;
-                const distance = Math.abs(centerY - cardCenterY);
+      // Trouver la carte la plus proche du centre de l'écran
+      cards.forEach((card) => {
+        const cardRect = card.getBoundingClientRect();
+        const cardCenterY = cardRect.top + cardRect.height / 2;
+        const distance = Math.abs(centerY - cardCenterY);
 
-                if (distance < minDistance) {
-                    minDistance = distance;
-                    closestCard = card as HTMLElement;
-                }
-            });
-
-            // Appliquer l'effet à toutes les cartes
-            cards.forEach((card) => {
-                const htmlCard = card as HTMLElement;
-                const overlay = card.querySelector(
-                    'div[class*="bg-gradient-to-t"]',
-                ) as HTMLElement;
-
-                if (card === closestCard) {
-                    // Carte au centre : ALLUMÉE
-                    htmlCard.style.filter = "brightness(1.2)";
-                    htmlCard.style.transform = "scale(1)";
-                    htmlCard.style.borderColor = "rgba(139, 92, 246, 0.5)";
-                    if (overlay) {
-                        overlay.style.opacity = "0.3";
-                    }
-                } else {
-                    // Autres cartes : lumineuses aussi
-                    htmlCard.style.filter = "brightness(1)";
-                    htmlCard.style.transform = "scale(1)";
-                    htmlCard.style.borderColor = "rgba(255, 255, 255, 0.1)";
-                    if (overlay) {
-                        overlay.style.opacity = "0.4";
-                    }
-                }
-            });
+        if (distance < minDistance) {
+          minDistance = distance;
+          closestCard = card as HTMLElement;
         }
+      });
 
-        // Mettre à jour lors du scroll
-        window.addEventListener("scroll", updateCardBrightness, {
-            passive: true,
-        });
+      // Appliquer l'effet à toutes les cartes
+      cards.forEach((card) => {
+        const htmlCard = card as HTMLElement;
+        const overlay = card.querySelector(
+          'div[class*="bg-gradient-to-t"]'
+        ) as HTMLElement;
 
-        // Initialiser
-        setTimeout(updateCardBrightness, 100);
+        if (card === closestCard) {
+          // Carte au centre : ALLUMÉE
+          htmlCard.style.filter = "brightness(1.2)";
+          htmlCard.style.transform = "scale(1)";
+          htmlCard.style.borderColor = "rgba(139, 92, 246, 0.5)";
+          if (overlay) {
+            overlay.style.opacity = "0.3";
+          }
+        } else {
+          // Autres cartes : lumineuses aussi
+          htmlCard.style.filter = "brightness(1)";
+          htmlCard.style.transform = "scale(1)";
+          htmlCard.style.borderColor = "rgba(255, 255, 255, 0.1)";
+          if (overlay) {
+            overlay.style.opacity = "0.4";
+          }
+        }
+      });
     }
 
-    // Initialiser au chargement de la page
-    if (document.readyState === "loading") {
-        document.addEventListener(
-            "DOMContentLoaded",
-            initMobileCardsBrightness,
-        );
-    } else {
-        initMobileCardsBrightness();
-    }
+    // Mettre à jour lors du scroll
+    window.addEventListener("scroll", updateCardBrightness, {
+      passive: true,
+    });
+
+    // Initialiser
+    setTimeout(updateCardBrightness, 100);
+  }
+
+  // Initialiser au chargement de la page
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initMobileCardsBrightness);
+  } else {
+    initMobileCardsBrightness();
+  }
 </script>
 
 <style>
-    /* Animation supplémentaire pour un effet plus fluide */
-    .group:hover > div:not(:hover) {
-        filter: brightness(0.7);
-    }
+  /* Animation supplémentaire pour un effet plus fluide */
+  .group:hover > div:not(:hover) {
+    filter: brightness(0.7);
+  }
 
-    .group > div:hover {
-        filter: brightness(1);
-    }
+  .group > div:hover {
+    filter: brightness(1);
+  }
 </style>

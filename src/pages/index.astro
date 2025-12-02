@@ -1,4 +1,6 @@
 ---
+export const prerender = true;
+
 import Layout from "../layouts/Layout.astro";
 import Hero from "../components/Hero.astro";
 import Propos from "../components/Propos.astro";
@@ -8,7 +10,10 @@ import Outils from "../components/Outils.astro";
 import Projets from "../components/Projets.astro";
 ---
 
-<Layout>
+<Layout
+  title="Loréna Chevallot - Designer Graphique & Web | Portfolio"
+  description="Portfolio de Loréna Chevallot, designer graphique et web. Découvrez mes projets créatifs en design UI/UX, identité visuelle et communication digitale."
+>
   <Hero />
   <Propos />
   <Parcours />

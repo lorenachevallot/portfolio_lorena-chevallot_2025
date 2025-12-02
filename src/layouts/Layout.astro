@@ -2,26 +2,139 @@
 import "../styles/global.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+}
+
+const {
+  title = "Loréna Chevallot, communicante digitale",
+  description =
+    "Portfolio de Loréna Chevallot, communicante digitale basée en Bourgogne-Franche-Comté, entre Belfort, Montbéliard et Besançon, spécialisée en stratégie de communication, rédaction web, réseaux sociaux, création de contenus, identité éditoriale, projets associatifs et montage vidéo.",
+  image = "/logo.png",
+} = Astro.props;
+
+const canonicalURL = new URL(
+  Astro.url.pathname,
+  Astro.site || "https://portfolio.lorena-chevallot.fr"
+);
 ---
 
 <!doctype html>
-<html lang="en" data-theme="Mode 1">
+<html lang="fr" data-theme="Mode 1">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- SEO Meta Tags -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta
+      name="keywords"
+      content="Loréna Chevallot, communicante digitale, communication digitale, stratégie de communication, rédaction web, création de contenus, réseaux sociaux, identité éditoriale, projets associatifs, montage vidéo, Belfort, Montbéliard, Besançon, Bourgogne-Franche-Comté, portfolio communication, jeune communicante"
+    />
+    <meta
+      name="author"
+      content="Loréna Chevallot, communicante digitale en Bourgogne-Franche-Comté"
+    />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={canonicalURL.href} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL.href} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta property="og:locale" content="fr_FR" />
+    <meta
+      property="og:site_name"
+      content="Portfolio de Loréna Chevallot - Communication digitale"
+    />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+
+    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <link rel="apple-touch-icon" href="/logo.svg" />
+
+    <!-- Preconnect pour les fonts (critique pour LCP) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Preload des fonts critiques -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Raleway:wght@400;700;800&family=Poppins:wght@300;400;600&family=Cormorant+Unicase:wght@300;400;700&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700;800&family=Poppins:wght@300;400;600&display=swap"
+      as="style"
     />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700;800&family=Poppins:wght@300;400;600&family=Cinzel:wght@400;700;900&family=Cormorant+Unicase:wght@300;400;700&display=swap"
+      rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700;800&family=Poppins:wght@300;400;600&family=Cinzel:wght@400;700;900&family=Cormorant+Unicase:wght@300;400;700&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
+
     <meta name="generator" content={Astro.generator} />
-    <title>Astro Basics</title>
+
+    <!-- Theme color -->
+    <meta name="theme-color" content="#000000" />
+
+    <!-- Données structurées : profil de Loréna en tant que communicante digitale -->
+    <script type="application/ld+json">
+      {JSON.stringify(
+        {
+          "@context": "https://schema.org",
+          "@type": "Person",
+          name: "Loréna Chevallot",
+          url: canonicalURL.href,
+          description:
+            "Communicante digitale basée en Bourgogne-Franche-Comté, entre Belfort, Montbéliard et Besançon, spécialisée en stratégie de communication, rédaction web, réseaux sociaux, création de contenus, identité éditoriale, projets associatifs et montage vidéo.",
+          jobTitle: "Communicante digitale",
+          alumniOf: [
+            "BUT Métiers du Multimédia et de l’Internet (MMI) - IUT de Montbéliard"
+          ],
+          knowsAbout: [
+            "Communication digitale",
+            "Stratégie de communication",
+            "Communication locale en Bourgogne-Franche-Comté",
+            "Communication digitale à Belfort",
+            "Communication digitale à Montbéliard",
+            "Communication digitale à Besançon",
+            "Création de contenus",
+            "Rédaction web",
+            "Réseaux sociaux",
+            "Identité éditoriale",
+            "Identité visuelle",
+            "Montage vidéo",
+            "Projets associatifs",
+            "Projets solidaires",
+            "Communication pour associations"
+          ]
+        },
+        null,
+        2
+      )}
+    </script>
   </head>
   <body class="bg-transparent overflow-x-hidden flex flex-col">
     <Header />
-    <slot />
+    <main>
+      <slot />
+    </main>
     <Footer />
   </body>
 </html>

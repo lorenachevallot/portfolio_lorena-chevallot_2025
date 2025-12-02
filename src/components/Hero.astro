@@ -8,12 +8,17 @@ import TypingAnimation from "./TypingAnimation.astro";
   id="hero"
   class="relative top-0 left-0 w-dvw h-screen flex items-center justify-center select-none"
   style="overflow: visible; min-height: 100vh; max-height: 100vh;"
+  aria-label="Section d'accueil"
 >
   <!-- Fleur gauche -->
   <img
     src={fleur_gauche.src}
-    alt="Fleur gauche"
+    alt=""
+    aria-hidden="true"
     class="absolute left-0 top-0 w-[25vh] h-[30vh] md:w-[35vh] md:h-[40vh] lg:w-[25vw] lg:h-[30dvw] object-cover object-center opacity-100 z-10"
+    loading="eager"
+    decoding="async"
+    fetchpriority="high"
   />
 
   <!-- Ellipses colorées derrière la fleur gauche -->
@@ -91,14 +96,18 @@ import TypingAnimation from "./TypingAnimation.astro";
   <!-- Fleur droite -->
   <img
     src={fleur_droite.src}
-    alt="Fleur droite"
+    alt=""
+    aria-hidden="true"
     class="absolute right-0 bottom-0 w-[25vh] h-[30vh] md:w-[35vh] md:h-[45dvh] lg:w-[30dvw] lg:h-[37dvw] object-cover opacity-100 z-10"
+    loading="eager"
+    decoding="async"
   />
 
   <!-- Scroll indicator -->
   <a
     href="#a-propos"
     class="absolute bottom-4 md:bottom-6 lg:bottom-8 left-1/2 -translate-x-1/2 flex justify-center"
+    aria-label="Défiler vers la section À propos"
   >
     <div
       class="w-10 h-10 md:w-11 md:h-11 lg:w-12 lg:h-12 border-2 border-white rounded-full flex items-center justify-center animate-bounce"
