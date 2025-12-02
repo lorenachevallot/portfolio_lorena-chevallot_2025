@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import Behance from "../assets/behance.svg";
 import LinkedIn from "../assets/linkedin.svg";
 import Instagram from "../assets/instagram.svg";
@@ -7,619 +8,634 @@ import fleur_droite from "../assets/fleur_droite.png";
 ---
 
 <footer
-    class="relative text-white overflow-hidden min-h-screen flex items-start"
+  class="relative text-white overflow-hidden min-h-screen flex items-start"
 >
-    <!-- Ligne décorative au-dessus du titre qui prend toute la largeur -->
-    <div class="absolute top-20 left-0 right-0 w-full z-10 line-container">
-        <div class="h-0.5 bg-white neon-bar animated-line"></div>
-    </div>
+  <!-- Ligne décorative au-dessus du titre qui prend toute la largeur -->
+  <div class="absolute top-20 left-0 right-0 w-full z-10 line-container">
+    <div class="h-0.5 bg-white neon-bar animated-line"></div>
+  </div>
+
+  <div
+    class="container mx-auto px-4 md:px-6 lg:px-[8vw] xl:px-[10vw] pt-20 md:pt-16 lg:pt-[8vh] pb-20 md:pb-24 lg:pb-[8vh] relative z-10 w-full max-w-[1600px]"
+  >
+    <!-- Titre principal en dehors de la grille -->
+    <h2
+      class="tracking-widest mb-6 md:mb-8 lg:mb-[3vh] main-title-font uppercase mt-8 md:mt-10 lg:mt-[5vh] font-extralight leading-tight footer-title"
+      style="font-weight: 200 !important; color: rgb(255, 255, 255) !important; opacity: 1 !important; text-shadow: 0 0 0 transparent !important;"
+    >
+      CONTACTEZ-MOI
+    </h2>
 
     <div
-        class="container mx-auto px-4 md:px-6 lg:px-[8vw] xl:px-[10vw] pt-20 md:pt-16 lg:pt-[8vh] pb-20 md:pb-24 lg:pb-[8vh] relative z-10 w-full max-w-[1600px]"
+      class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10 lg:gap-[8vw] items-start lg:items-center mt-16 md:mt-20 lg:mt-[8vh]"
     >
-        <!-- Titre principal en dehors de la grille -->
-        <h2
-            class="tracking-widest mb-6 md:mb-8 lg:mb-[3vh] main-title-font uppercase mt-8 md:mt-10 lg:mt-[5vh] font-extralight leading-tight footer-title"
-            style="font-weight: 200 !important; color: rgb(255, 255, 255) !important; opacity: 1 !important; text-shadow: 0 0 0 transparent !important;"
-        >
-            CONTACTEZ-MOI
-        </h2>
+      <!-- Section gauche avec navigation -->
+      <div class="flex flex-col mt-0 md:mt-8 lg:mt-[6vh] order-1 lg:order-1">
+        <!-- Navigation avec barre verticale -->
+        <div class="flex gap-3 md:gap-4 lg:gap-6">
+          <!-- Barre verticale avec effet néon -->
+          <div class="w-0.5 bg-white self-stretch neon-bar"></div>
 
-        <div
-            class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10 lg:gap-[8vw] items-start lg:items-center mt-16 md:mt-20 lg:mt-[8vh]"
-        >
-            <!-- Section gauche avec navigation -->
-            <div
-                class="flex flex-col mt-0 md:mt-8 lg:mt-[6vh] order-1 lg:order-1"
+          <!-- Navigation -->
+          <nav
+            class="flex flex-col space-y-6 md:space-y-8 lg:space-y-[4vh] py-1"
+          >
+            <a
+              href="#parcours"
+              class="footer-nav-link text-white font-light hover:text-secondary transition-colors duration-300 uppercase"
             >
-                <!-- Navigation avec barre verticale -->
-                <div class="flex gap-3 md:gap-4 lg:gap-6">
-                    <!-- Barre verticale avec effet néon -->
-                    <div class="w-0.5 bg-white self-stretch neon-bar"></div>
-
-                    <!-- Navigation -->
-                    <nav
-                        class="flex flex-col space-y-6 md:space-y-8 lg:space-y-[4vh] py-1"
-                    >
-                        <a
-                            href="#parcours"
-                            class="footer-nav-link text-white font-light hover:text-secondary transition-colors duration-300 uppercase"
-                        >
-                            PARCOURS
-                        </a>
-                        <a
-                            href="#competences"
-                            class="footer-nav-link text-white font-light hover:text-secondary transition-colors duration-300 uppercase"
-                        >
-                            COMPÉTENCES
-                        </a>
-                        <a
-                            href="#outils"
-                            class="footer-nav-link text-white font-light hover:text-secondary transition-colors duration-300 uppercase"
-                        >
-                            OUTILS
-                        </a>
-                        <a
-                            href="#projets"
-                            class="footer-nav-link text-white font-light hover:text-secondary transition-colors duration-300 uppercase"
-                        >
-                            PROJETS
-                        </a>
-                        <a
-                            href="/contact"
-                            class="footer-nav-link text-white font-light hover:text-secondary transition-colors duration-300 uppercase"
-                        >
-                            CONTACT
-                        </a>
-                    </nav>
-                </div>
-            </div>
-
-            <!-- Section droite avec réseaux sociaux et boutons -->
-            <div
-                class="flex flex-col items-start lg:items-start space-y-6 md:space-y-8 lg:space-y-[4vh] order-2 lg:order-2 mb-8 lg:mb-0"
+              PARCOURS
+            </a>
+            <a
+              href="#competences"
+              class="footer-nav-link text-white font-light hover:text-secondary transition-colors duration-300 uppercase"
             >
-                <!-- Boutons d'action -->
-                <div
-                    class="flex flex-col gap-2 md:gap-3 lg:gap-3 w-full lg:w-auto"
-                >
-                    <!-- Bouton Télécharger CV -->
-                    <a
-                        href="/Lorena-Chevallot_CV_2026.pdf"
-                        download
-                        class="btn bg-white text-black hover:bg-secondary hover:text-white transition-all duration-300 ts-Button uppercase flex items-center justify-between px-2 py-2 md:px-6 lg:px-5 md:py-4 lg:py-3 h-auto min-h-0 text-[9px] md:text-sm lg:text-sm"
-                        style="border-radius: 0.75rem !important; width: fit-content; min-width: 280px;"
-                    >
-                        <span class="whitespace-nowrap">TÉLÉCHARGER MON CV</span
-                        >
-                        <svg
-                            class="w-3 h-3 md:w-4 md:h-4 lg:w-4 lg:h-4 ml-1 lg:ml-2"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                        >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M9 5l7 7-7 7"></path>
-                        </svg>
-                    </a>
+              COMPÉTENCES
+            </a>
+            <a
+              href="#outils"
+              class="footer-nav-link text-white font-light hover:text-secondary transition-colors duration-300 uppercase"
+            >
+              OUTILS
+            </a>
+            <a
+              href="#projets"
+              class="footer-nav-link text-white font-light hover:text-secondary transition-colors duration-300 uppercase"
+            >
+              PROJETS
+            </a>
+            <a
+              href="/contact"
+              class="footer-nav-link text-white font-light hover:text-secondary transition-colors duration-300 uppercase"
+            >
+              CONTACT
+            </a>
+          </nav>
+        </div>
+      </div>
 
-                    <!-- Bouton Me contacter -->
-                    <a
-                        href="/contact"
-                        class="btn bg-white text-black hover:bg-secondary hover:text-white transition-all duration-300 ts-Button uppercase flex items-center justify-between px-2 py-2 md:px-6 lg:px-5 md:py-4 lg:py-3 h-auto min-h-0 text-[9px] md:text-sm lg:text-sm"
-                        style="border-radius: 0.75rem !important; width: fit-content; min-width: 280px;"
-                    >
-                        <span class="whitespace-nowrap">ME CONTACTER</span>
-                        <svg
-                            class="w-3 h-3 md:w-4 md:h-4 lg:w-4 lg:h-4 ml-1 lg:ml-2"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                        >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M9 5l7 7-7 7"></path>
-                        </svg>
-                    </a>
-                </div>
+      <!-- Section droite avec réseaux sociaux et boutons -->
+      <div
+        class="flex flex-col items-start lg:items-start space-y-6 md:space-y-8 lg:space-y-[4vh] order-2 lg:order-2 mb-8 lg:mb-0"
+      >
+        <!-- Boutons d'action -->
+        <div class="flex flex-col gap-2 md:gap-3 lg:gap-3 w-full lg:w-auto">
+          <!-- Bouton Télécharger CV -->
+          <a
+            href="/Lorena-Chevallot_CV_2026.pdf"
+            download
+            class="btn bg-white text-black hover:bg-secondary hover:text-white transition-all duration-300 ts-Button uppercase flex items-center justify-between px-2 py-2 md:px-6 lg:px-5 md:py-4 lg:py-3 h-auto min-h-0 text-[9px] md:text-sm lg:text-sm"
+            style="border-radius: 0.75rem !important; width: fit-content; min-width: 280px;"
+          >
+            <span class="whitespace-nowrap">TÉLÉCHARGER MON CV</span>
+            <svg
+              class="w-3 h-3 md:w-4 md:h-4 lg:w-4 lg:h-4 ml-1 lg:ml-2"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 5l7 7-7 7"></path>
+            </svg>
+          </a>
 
-                <!-- Icônes réseaux sociaux (visibles uniquement sur lg) -->
-                <div
-                    class="hidden lg:flex gap-8 xl:gap-[3vw] justify-start max-w-[600px]"
-                >
-                    <!-- Behance -->
-                    <a
-                        href="https://www.behance.net/lornachevallot2"
-                        target="_blank"
-                        class="flex flex-col items-center gap-2"
-                    >
-                        <img
-                            src={Behance.src}
-                            alt="Behance"
-                            class="w-16 h-16 lg:w-[4vw] lg:h-[4vw] lg:max-w-16 lg:max-h-16"
-                        />
-                        <span class="ts-Corp text-white text-xs">Behance</span>
-                    </a>
-
-                    <!-- Instagram -->
-                    <a
-                        href="https://www.instagram.com/lorena_chevallot/"
-                        target="_blank"
-                        class="flex flex-col items-center gap-2"
-                    >
-                        <img
-                            src={Instagram.src}
-                            alt="Instagram"
-                            class="w-16 h-16 lg:w-[4vw] lg:h-[4vw] lg:max-w-16 lg:max-h-16"
-                        />
-                        <span class="ts-Corp text-white text-xs">Instagram</span
-                        >
-                    </a>
-
-                    <!-- LinkedIn -->
-                    <a
-                        href="https://www.linkedin.com/in/lor%C3%A9na-chevallot/"
-                        target="_blank"
-                        class="flex flex-col items-center gap-2"
-                    >
-                        <img
-                            src={LinkedIn.src}
-                            alt="LinkedIn"
-                            class="w-16 h-16 lg:w-[4vw] lg:h-[4vw] lg:max-w-16 lg:max-h-16"
-                        />
-                        <span class="ts-Corp text-white text-xs">Linkedin</span>
-                    </a>
-
-                    <!-- Mail -->
-                    <button
-                        id="email-copy-btn-footer"
-                        class="flex flex-col items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity"
-                    >
-                        <img
-                            src={Mail.src}
-                            alt="Mail"
-                            class="w-16 h-16 lg:w-[4vw] lg:h-[4vw] lg:max-w-16 lg:max-h-16"
-                        />
-                        <span class="ts-Corp text-white text-xs">Mail</span>
-                    </button>
-                </div>
-            </div>
+          <!-- Bouton Me contacter -->
+          <a
+            href="/contact"
+            class="btn bg-white text-black hover:bg-secondary hover:text-white transition-all duration-300 ts-Button uppercase flex items-center justify-between px-2 py-2 md:px-6 lg:px-5 md:py-4 lg:py-3 h-auto min-h-0 text-[9px] md:text-sm lg:text-sm"
+            style="border-radius: 0.75rem !important; width: fit-content; min-width: 280px;"
+          >
+            <span class="whitespace-nowrap">ME CONTACTER</span>
+            <svg
+              class="w-3 h-3 md:w-4 md:h-4 lg:w-4 lg:h-4 ml-1 lg:ml-2"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 5l7 7-7 7"></path>
+            </svg>
+          </a>
         </div>
 
-        <!-- Icônes réseaux sociaux en bas (uniquement sur mobile/tablette) -->
+        <!-- Icônes réseaux sociaux (visibles uniquement sur lg) -->
         <div
-            class="flex lg:hidden gap-8 md:gap-10 justify-center mt-24 md:mt-28 relative z-30"
+          class="hidden lg:flex gap-8 xl:gap-[3vw] justify-start max-w-[600px]"
         >
-            <!-- Behance -->
-            <a
-                href="https://www.behance.net/lornachevallot2"
-                target="_blank"
-                class="flex flex-col items-center gap-1"
-            >
-                <img
-                    src={Behance.src}
-                    alt="Behance"
-                    class="w-14 h-14 md:w-16 md:h-16"
-                />
-            </a>
+          <!-- Behance -->
+          <a
+            href="https://www.behance.net/lornachevallot2"
+            target="_blank"
+            class="flex flex-col items-center gap-2"
+            aria-label="Voir mon profil Behance"
+          >
+            <img
+              src={Behance.src}
+              alt=""
+              class="w-16 h-16 lg:w-[4vw] lg:h-[4vw] lg:max-w-16 lg:max-h-16"
+              loading="lazy"
+              decoding="async"
+              width="64"
+              height="64"
+            />
+            <span class="ts-Corp text-white text-xs">Behance</span>
+          </a>
 
-            <!-- Instagram -->
-            <a
-                href="https://www.instagram.com/lorena_chevallot/"
-                target="_blank"
-                class="flex flex-col items-center gap-1"
-            >
-                <img
-                    src={Instagram.src}
-                    alt="Instagram"
-                    class="w-14 h-14 md:w-16 md:h-16"
-                />
-            </a>
+          <!-- Instagram -->
+          <a
+            href="https://www.instagram.com/lorena_chevallot/"
+            target="_blank"
+            class="flex flex-col items-center gap-2"
+            aria-label="Voir mon profil Instagram"
+          >
+            <img
+              src={Instagram.src}
+              alt=""
+              class="w-16 h-16 lg:w-[4vw] lg:h-[4vw] lg:max-w-16 lg:max-h-16"
+              loading="lazy"
+              decoding="async"
+              width="64"
+              height="64"
+            />
+            <span class="ts-Corp text-white text-xs">Instagram</span>
+          </a>
 
-            <!-- LinkedIn -->
-            <a
-                href="https://www.linkedin.com/in/lor%C3%A9na-chevallot/"
-                target="_blank"
-                class="flex flex-col items-center gap-1"
-            >
-                <img
-                    src={LinkedIn.src}
-                    alt="LinkedIn"
-                    class="w-14 h-14 md:w-16 md:h-16"
-                />
-            </a>
+          <!-- LinkedIn -->
+          <a
+            href="https://www.linkedin.com/in/lor%C3%A9na-chevallot/"
+            target="_blank"
+            class="flex flex-col items-center gap-2"
+            aria-label="Voir mon profil LinkedIn"
+          >
+            <img
+              src={LinkedIn.src}
+              alt=""
+              class="w-16 h-16 lg:w-[4vw] lg:h-[4vw] lg:max-w-16 lg:max-h-16"
+              loading="lazy"
+              decoding="async"
+              width="64"
+              height="64"
+            />
+            <span class="ts-Corp text-white text-xs">Linkedin</span>
+          </a>
 
-            <!-- Mail -->
-            <button
-                id="email-copy-btn-footer-mobile"
-                class="flex flex-col items-center gap-1 cursor-pointer hover:opacity-80 transition-opacity"
-            >
-                <img
-                    src={Mail.src}
-                    alt="Mail"
-                    class="w-14 h-14 md:w-16 md:h-16"
-                />
-            </button>
+          <!-- Mail -->
+          <button
+            id="email-copy-btn-footer"
+            class="flex flex-col items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity"
+            aria-label="Copier mon adresse email"
+          >
+            <img
+              src={Mail.src}
+              alt=""
+              class="w-16 h-16 lg:w-[4vw] lg:h-[4vw] lg:max-w-16 lg:max-h-16"
+              loading="lazy"
+              decoding="async"
+              width="64"
+              height="64"
+            />
+            <span class="ts-Corp text-white text-xs">Mail</span>
+          </button>
         </div>
+      </div>
     </div>
 
-    <!-- Copyright en bas de page aligné avec la barre -->
-    <div class="container mx-auto px-8 absolute bottom-4 left-0 right-0 z-20">
-        <p class="ts-Corp text-white text-xs md:text-sm">
-            Portfolio loréna chevallot - tous droits réservés
-        </p>
-    </div>
-
-    <!-- Fleur décorative en bas à droite avec ellipses -->
+    <!-- Icônes réseaux sociaux en bas (uniquement sur mobile/tablette) -->
     <div
-        class="absolute right-0 w-[200px] h-[200px] md:w-[300px] md:h-[300px] lg:w-[20vw] lg:h-[20vw] lg:max-w-[400px] lg:max-h-[400px] pointer-events-none overflow-visible z-0"
-        style="bottom: -8vh;"
+      class="flex lg:hidden gap-8 md:gap-10 justify-center mt-24 md:mt-28 relative z-30"
     >
-        <!-- Ellipses colorées derrière la fleur -->
-        <!-- Ellipse bleu (en dessous) -->
-        <div class="absolute rounded-full opacity-85 ellipse-footer-1"></div>
-
-        <!-- Ellipse orange (au milieu) -->
-        <div class="absolute rounded-full opacity-90 ellipse-footer-2"></div>
-
-        <!-- Ellipse bleu supplémentaire (sous orange) -->
-        <div class="absolute rounded-full opacity-80 ellipse-footer-3"></div>
-
-        <!-- Ellipse rouge -->
-        <div class="absolute rounded-full opacity-85 ellipse-footer-4"></div>
-
-        <!-- Ellipse bleu (par-dessus) -->
-        <div class="absolute rounded-full opacity-80 ellipse-footer-5"></div>
-
-        <!-- Fleur -->
+      <!-- Behance -->
+      <a
+        href="https://www.behance.net/lornachevallot2"
+        target="_blank"
+        class="flex flex-col items-center gap-1"
+        aria-label="Voir mon profil Behance"
+      >
         <img
-            src={fleur_droite.src}
-            alt="Fleur décorative"
-            class="absolute right-0 bottom-0 w-full h-full object-cover opacity-100 z-10"
+          src={Behance.src}
+          alt="Behance"
+          class="w-14 h-14 md:w-16 md:h-16"
+          loading="lazy"
+          decoding="async"
+          width="56"
+          height="56"
         />
+      </a>
+
+      <!-- Instagram -->
+      <a
+        href="https://www.instagram.com/lorena_chevallot/"
+        target="_blank"
+        class="flex flex-col items-center gap-1"
+        aria-label="Voir mon profil Instagram"
+      >
+        <img
+          src={Instagram.src}
+          alt="Instagram"
+          class="w-14 h-14 md:w-16 md:h-16"
+          loading="lazy"
+          decoding="async"
+          width="56"
+          height="56"
+        />
+      </a>
+
+      <!-- LinkedIn -->
+      <a
+        href="https://www.linkedin.com/in/lor%C3%A9na-chevallot/"
+        target="_blank"
+        class="flex flex-col items-center gap-1"
+        aria-label="Voir mon profil LinkedIn"
+      >
+        <img
+          src={LinkedIn.src}
+          alt="LinkedIn"
+          class="w-14 h-14 md:w-16 md:h-16"
+          loading="lazy"
+          decoding="async"
+          width="56"
+          height="56"
+        />
+      </a>
+
+      <!-- Mail -->
+      <button
+        id="email-copy-btn-footer-mobile"
+        class="flex flex-col items-center gap-1 cursor-pointer hover:opacity-80 transition-opacity"
+        aria-label="Copier mon adresse email"
+      >
+        <img
+          src={Mail.src}
+          alt="Envoyer un email"
+          class="w-14 h-14 md:w-16 md:h-16"
+          loading="lazy"
+          decoding="async"
+          width="56"
+          height="56"
+        />
+      </button>
     </div>
+  </div>
+
+  <!-- Copyright en bas de page aligné avec la barre -->
+  <div class="container mx-auto px-8 absolute bottom-4 left-0 right-0 z-20">
+    <p class="ts-Corp text-white text-xs md:text-sm">
+      Portfolio loréna chevallot - tous droits réservés
+    </p>
+  </div>
+
+  <!-- Fleur décorative en bas à droite avec ellipses -->
+  <div
+    class="absolute right-0 w-[200px] h-[200px] md:w-[300px] md:h-[300px] lg:w-[20vw] lg:h-[20vw] lg:max-w-[400px] lg:max-h-[400px] pointer-events-none overflow-visible z-0"
+    style="bottom: -8vh;"
+  >
+    <!-- Ellipses colorées derrière la fleur -->
+    <!-- Ellipse bleu (en dessous) -->
+    <div class="absolute rounded-full opacity-85 ellipse-footer-1"></div>
+
+    <!-- Ellipse orange (au milieu) -->
+    <div class="absolute rounded-full opacity-90 ellipse-footer-2"></div>
+
+    <!-- Ellipse bleu supplémentaire (sous orange) -->
+    <div class="absolute rounded-full opacity-80 ellipse-footer-3"></div>
+
+    <!-- Ellipse rouge -->
+    <div class="absolute rounded-full opacity-85 ellipse-footer-4"></div>
+
+    <!-- Ellipse bleu (par-dessus) -->
+    <div class="absolute rounded-full opacity-80 ellipse-footer-5"></div>
+
+    <!-- Fleur -->
+    <Image
+      src={fleur_droite}
+      alt=""
+      aria-hidden="true"
+      class="absolute right-0 bottom-0 w-full h-full object-cover opacity-100 z-10"
+      loading="lazy"
+      decoding="async"
+      format="webp"
+      quality={70}
+      widths={[400, 600, 800]}
+      sizes="(max-width: 768px) 50vw, 30vw"
+    />
+  </div>
 </footer>
 
 <style>
-    .main-title-font {
-        font-family: var(--fonts-main-title-home, "Cormorant Unicase"), serif;
-    }
+  .main-title-font {
+    font-family: var(--fonts-main-title-home, "Cormorant Unicase"), serif;
+  }
 
-    /* Drop shadow Figma : X:0, Y:4, Blur:26.7, Spread:0, Color:#FFFFFF */
-    .drop-shadow-figma {
-        filter: drop-shadow(0px 0px 70px rgba(255, 255, 255, 0.9))
-            drop-shadow(0px 0px 35px rgba(255, 255, 255, 0.8));
-    }
+  /* Drop shadow Figma : X:0, Y:4, Blur:26.7, Spread:0, Color:#FFFFFF */
+  .drop-shadow-figma {
+    filter: drop-shadow(0px 0px 70px rgba(255, 255, 255, 0.9))
+      drop-shadow(0px 0px 35px rgba(255, 255, 255, 0.8));
+  }
 
-    /* Effet néon sur la barre verticale */
-    .neon-bar {
-        box-shadow:
-            0 0 10px rgba(255, 255, 255, 0.8),
-            0 0 20px rgba(255, 255, 255, 0.6),
-            0 0 30px rgba(255, 255, 255, 0.4);
-    }
+  /* Effet néon sur la barre verticale */
+  .neon-bar {
+    box-shadow:
+      0 0 10px rgba(255, 255, 255, 0.8),
+      0 0 20px rgba(255, 255, 255, 0.6),
+      0 0 30px rgba(255, 255, 255, 0.4);
+  }
 
-    /* Animation de ligne de gauche à droite */
-    .animated-line {
-        transform-origin: left;
-        transform: scaleX(0);
-        will-change: transform;
-    }
+  /* Animation de ligne de gauche à droite */
+  .animated-line {
+    transform-origin: left;
+    transform: scaleX(0);
+    will-change: transform;
+  }
 
-    .line-container.visible .animated-line {
-        animation: lineExpand 1.5s ease-out forwards;
-    }
+  .line-container.visible .animated-line {
+    animation: lineExpand 1.5s ease-out forwards;
+  }
 
-    /* Animation pour la ligne du bas */
-    .animated-line-bottom {
-        transform-origin: left;
-        transform: scaleX(0);
-        will-change: transform;
-    }
+  /* Animation pour la ligne du bas */
+  .animated-line-bottom {
+    transform-origin: left;
+    transform: scaleX(0);
+    will-change: transform;
+  }
 
-    .line-container-bottom.visible .animated-line-bottom {
-        animation: lineExpand 1.5s ease-out forwards;
-    }
+  .line-container-bottom.visible .animated-line-bottom {
+    animation: lineExpand 1.5s ease-out forwards;
+  }
 
-    @keyframes lineExpand {
-        from {
-            transform: scaleX(0);
-        }
-        to {
-            transform: scaleX(1);
-        }
+  @keyframes lineExpand {
+    from {
+      transform: scaleX(0);
     }
+    to {
+      transform: scaleX(1);
+    }
+  }
 
-    /* Responsive ellipses pour Footer */
+  /* Responsive ellipses pour Footer */
+  .ellipse-footer-1 {
+    right: -85px;
+    bottom: -35px;
+    width: 280px;
+    height: 280px;
+    background: radial-gradient(ellipse at center, #3600c9 0%, transparent 55%);
+    filter: blur(20px);
+    z-index: 1;
+  }
+
+  .ellipse-footer-2 {
+    right: -70px;
+    bottom: -85px;
+    width: 315px;
+    height: 315px;
+    background: radial-gradient(ellipse at center, #fd772b 0%, transparent 55%);
+    filter: blur(25px);
+    z-index: 2;
+  }
+
+  .ellipse-footer-3 {
+    right: -75px;
+    bottom: -105px;
+    width: 265px;
+    height: 265px;
+    background: radial-gradient(ellipse at center, #3600c9 0%, transparent 55%);
+    filter: blur(20px);
+    z-index: 1.5;
+  }
+
+  .ellipse-footer-4 {
+    right: -50px;
+    bottom: 18px;
+    width: 265px;
+    height: 265px;
+    background: radial-gradient(ellipse at center, #cc1d48 0%, transparent 55%);
+    filter: blur(20px);
+    z-index: 3;
+  }
+
+  .ellipse-footer-5 {
+    right: -85px;
+    bottom: 50px;
+    width: 245px;
+    height: 245px;
+    background: radial-gradient(ellipse at center, #3600c9 0%, transparent 55%);
+    filter: blur(18px);
+    z-index: 4;
+  }
+
+  @media (min-width: 768px) {
     .ellipse-footer-1 {
-        right: -85px;
-        bottom: -35px;
-        width: 280px;
-        height: 280px;
-        background: radial-gradient(
-            ellipse at center,
-            #3600c9 0%,
-            transparent 55%
-        );
-        filter: blur(20px);
-        z-index: 1;
+      right: -125px;
+      bottom: -50px;
+      width: 420px;
+      height: 420px;
+      filter: blur(25px);
     }
 
     .ellipse-footer-2 {
-        right: -70px;
-        bottom: -85px;
-        width: 315px;
-        height: 315px;
-        background: radial-gradient(
-            ellipse at center,
-            #fd772b 0%,
-            transparent 55%
-        );
-        filter: blur(25px);
-        z-index: 2;
+      right: -100px;
+      bottom: -125px;
+      width: 475px;
+      height: 475px;
+      filter: blur(30px);
     }
 
     .ellipse-footer-3 {
-        right: -75px;
-        bottom: -105px;
-        width: 265px;
-        height: 265px;
-        background: radial-gradient(
-            ellipse at center,
-            #3600c9 0%,
-            transparent 55%
-        );
-        filter: blur(20px);
-        z-index: 1.5;
+      right: -110px;
+      bottom: -155px;
+      width: 395px;
+      height: 395px;
+      filter: blur(25px);
     }
 
     .ellipse-footer-4 {
-        right: -50px;
-        bottom: 18px;
-        width: 265px;
-        height: 265px;
-        background: radial-gradient(
-            ellipse at center,
-            #cc1d48 0%,
-            transparent 55%
-        );
-        filter: blur(20px);
-        z-index: 3;
+      right: -75px;
+      bottom: 25px;
+      width: 395px;
+      height: 395px;
+      filter: blur(25px);
     }
 
     .ellipse-footer-5 {
-        right: -85px;
-        bottom: 50px;
-        width: 245px;
-        height: 245px;
-        background: radial-gradient(
-            ellipse at center,
-            #3600c9 0%,
-            transparent 55%
-        );
-        filter: blur(18px);
-        z-index: 4;
+      right: -125px;
+      bottom: 75px;
+      width: 370px;
+      height: 370px;
+      filter: blur(22px);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .ellipse-footer-1 {
+      right: -10vw;
+      bottom: -4vh;
+      width: 28vw;
+      height: 28vw;
+      max-width: 530px;
+      max-height: 530px;
+      filter: blur(30px);
     }
 
-    @media (min-width: 768px) {
-        .ellipse-footer-1 {
-            right: -125px;
-            bottom: -50px;
-            width: 420px;
-            height: 420px;
-            filter: blur(25px);
-        }
-
-        .ellipse-footer-2 {
-            right: -100px;
-            bottom: -125px;
-            width: 475px;
-            height: 475px;
-            filter: blur(30px);
-        }
-
-        .ellipse-footer-3 {
-            right: -110px;
-            bottom: -155px;
-            width: 395px;
-            height: 395px;
-            filter: blur(25px);
-        }
-
-        .ellipse-footer-4 {
-            right: -75px;
-            bottom: 25px;
-            width: 395px;
-            height: 395px;
-            filter: blur(25px);
-        }
-
-        .ellipse-footer-5 {
-            right: -125px;
-            bottom: 75px;
-            width: 370px;
-            height: 370px;
-            filter: blur(22px);
-        }
+    .ellipse-footer-2 {
+      right: -8vw;
+      bottom: -10vh;
+      width: 32vw;
+      height: 32vw;
+      max-width: 600px;
+      max-height: 600px;
+      filter: blur(35px);
     }
 
-    @media (min-width: 1024px) {
-        .ellipse-footer-1 {
-            right: -10vw;
-            bottom: -4vh;
-            width: 28vw;
-            height: 28vw;
-            max-width: 530px;
-            max-height: 530px;
-            filter: blur(30px);
-        }
-
-        .ellipse-footer-2 {
-            right: -8vw;
-            bottom: -10vh;
-            width: 32vw;
-            height: 32vw;
-            max-width: 600px;
-            max-height: 600px;
-            filter: blur(35px);
-        }
-
-        .ellipse-footer-3 {
-            right: -9vw;
-            bottom: -12vh;
-            width: 26vw;
-            height: 26vw;
-            max-width: 500px;
-            max-height: 500px;
-            filter: blur(30px);
-        }
-
-        .ellipse-footer-4 {
-            right: -6vw;
-            bottom: 2vh;
-            width: 26vw;
-            height: 26vw;
-            max-width: 500px;
-            max-height: 500px;
-            filter: blur(30px);
-        }
-
-        .ellipse-footer-5 {
-            right: -10vw;
-            bottom: 6vh;
-            width: 24vw;
-            height: 24vw;
-            max-width: 465px;
-            max-height: 465px;
-            filter: blur(25px);
-        }
+    .ellipse-footer-3 {
+      right: -9vw;
+      bottom: -12vh;
+      width: 26vw;
+      height: 26vw;
+      max-width: 500px;
+      max-height: 500px;
+      filter: blur(30px);
     }
 
-    /* Navigation Footer - Responsive Font Size */
+    .ellipse-footer-4 {
+      right: -6vw;
+      bottom: 2vh;
+      width: 26vw;
+      height: 26vw;
+      max-width: 500px;
+      max-height: 500px;
+      filter: blur(30px);
+    }
+
+    .ellipse-footer-5 {
+      right: -10vw;
+      bottom: 6vh;
+      width: 24vw;
+      height: 24vw;
+      max-width: 465px;
+      max-height: 465px;
+      filter: blur(25px);
+    }
+  }
+
+  /* Navigation Footer - Responsive Font Size */
+  .footer-nav-link {
+    font-family: "Raleway", sans-serif;
+    font-weight: 300;
+    font-size: 18px; /* Mobile */
+  }
+
+  @media (min-width: 768px) {
     .footer-nav-link {
-        font-family: "Raleway", sans-serif;
-        font-weight: 300;
-        font-size: 18px; /* Mobile */
+      font-size: 24px; /* Tablette */
     }
+  }
 
-    @media (min-width: 768px) {
-        .footer-nav-link {
-            font-size: 24px; /* Tablette */
-        }
+  @media (min-width: 1024px) {
+    .footer-nav-link {
+      font-size: 24px; /* Desktop - taille fixe */
     }
+  }
 
-    @media (min-width: 1024px) {
-        .footer-nav-link {
-            font-size: 24px; /* Desktop - taille fixe */
-        }
-    }
+  /* Titre CONTACTEZ-MOI - Responsive */
+  h2.footer-title {
+    font-size: 32px !important;
+    line-height: 1.2;
+    word-break: break-word;
+    color: #ffffff !important;
+    opacity: 1 !important;
+  }
 
-    /* Titre CONTACTEZ-MOI - Responsive */
+  @media (min-width: 768px) {
     h2.footer-title {
-        font-size: 32px !important;
-        line-height: 1.2;
-        word-break: break-word;
-        color: #ffffff !important;
-        opacity: 1 !important;
+      font-size: 36px !important;
     }
+  }
 
-    @media (min-width: 768px) {
-        h2.footer-title {
-            font-size: 36px !important;
-        }
+  @media (min-width: 1024px) {
+    h2.footer-title {
+      font-size: 56px !important;
+      line-height: 1;
+      white-space: nowrap;
+      letter-spacing: 0.1em;
+      color: white !important;
+      filter: none !important;
+      text-shadow: none !important;
     }
-
-    @media (min-width: 1024px) {
-        h2.footer-title {
-            font-size: 56px !important;
-            line-height: 1;
-            white-space: nowrap;
-            letter-spacing: 0.1em;
-            color: white !important;
-            filter: none !important;
-            text-shadow: none !important;
-        }
-    }
+  }
 </style>
 
 <script>
-    // Observer pour déclencher l'animation quand l'élément entre dans la vue
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: "0px",
-    };
+  // Observer pour déclencher l'animation quand l'élément entre dans la vue
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: "0px",
+  };
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add("visible");
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
 
-    // Observer la ligne du haut
-    const lineContainer = document.querySelector(".line-container");
-    if (lineContainer) {
-        observer.observe(lineContainer);
-    }
+  // Observer la ligne du haut
+  const lineContainer = document.querySelector(".line-container");
+  if (lineContainer) {
+    observer.observe(lineContainer);
+  }
 
-    // Observer la ligne du bas
-    const lineContainerBottom = document.querySelector(
-        ".line-container-bottom",
-    );
-    if (lineContainerBottom) {
-        observer.observe(lineContainerBottom);
-    }
+  // Observer la ligne du bas
+  const lineContainerBottom = document.querySelector(".line-container-bottom");
+  if (lineContainerBottom) {
+    observer.observe(lineContainerBottom);
+  }
 
-    // Gestion de la copie d'email (version desktop)
-    const emailBtnFooter = document.getElementById("email-copy-btn-footer");
-    if (emailBtnFooter) {
-        const span = emailBtnFooter.querySelector("span");
-        const originalText = span ? span.textContent : "Mail";
-        emailBtnFooter.addEventListener("click", async () => {
-            try {
-                await navigator.clipboard.writeText(
-                    "lorena.chevallot@orange.fr",
-                );
-                if (span) {
-                    span.textContent = "Copié !";
-                    setTimeout(() => {
-                        span.textContent = originalText;
-                    }, 1500);
-                }
-            } catch (err) {
-                console.error("Erreur lors de la copie:", err);
-            }
-        });
-    }
+  // Gestion de la copie d'email (version desktop)
+  const emailBtnFooter = document.getElementById("email-copy-btn-footer");
+  if (emailBtnFooter) {
+    const span = emailBtnFooter.querySelector("span");
+    const originalText = span ? span.textContent : "Mail";
+    emailBtnFooter.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText("lorena.chevallot@orange.fr");
+        if (span) {
+          span.textContent = "Copié !";
+          setTimeout(() => {
+            span.textContent = originalText;
+          }, 1500);
+        }
+      } catch (err) {
+        console.error("Erreur lors de la copie:", err);
+      }
+    });
+  }
 
-    // Gestion de la copie d'email (version mobile)
-    const emailBtnFooterMobile = document.getElementById(
-        "email-copy-btn-footer-mobile",
-    );
-    if (emailBtnFooterMobile) {
-        emailBtnFooterMobile.addEventListener("click", async () => {
-            try {
-                await navigator.clipboard.writeText(
-                    "lorena.chevallot@orange.fr",
-                );
-                const img = emailBtnFooterMobile.querySelector("img");
-                const originalAlt = img ? img.alt : "Mail";
-                if (img) {
-                    img.alt = "Copié !";
-                    setTimeout(() => {
-                        img.alt = originalAlt;
-                    }, 1500);
-                }
-            } catch (err) {
-                console.error("Erreur lors de la copie:", err);
-            }
-        });
-    }
+  // Gestion de la copie d'email (version mobile)
+  const emailBtnFooterMobile = document.getElementById(
+    "email-copy-btn-footer-mobile"
+  );
+  if (emailBtnFooterMobile) {
+    emailBtnFooterMobile.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText("lorena.chevallot@orange.fr");
+        const img = emailBtnFooterMobile.querySelector("img");
+        const originalAlt = img ? img.alt : "Mail";
+        if (img) {
+          img.alt = "Copié !";
+          setTimeout(() => {
+            img.alt = originalAlt;
+          }, 1500);
+        }
+      } catch (err) {
+        console.error("Erreur lors de la copie:", err);
+      }
+    });
+  }
 </script>

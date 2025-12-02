@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import fleur_droite from "../assets/fleur_droite.png";
 import fleur_gauche from "../assets/fleur_gauche.png";
 import TypingAnimation from "./TypingAnimation.astro";
@@ -11,14 +12,18 @@ import TypingAnimation from "./TypingAnimation.astro";
   aria-label="Section d'accueil"
 >
   <!-- Fleur gauche -->
-  <img
-    src={fleur_gauche.src}
+  <Image
+    src={fleur_gauche}
     alt=""
     aria-hidden="true"
     class="absolute left-0 top-0 w-[25vh] h-[30vh] md:w-[35vh] md:h-[40vh] lg:w-[25vw] lg:h-[30dvw] object-cover object-center opacity-100 z-10"
     loading="eager"
     decoding="async"
     fetchpriority="high"
+    format="webp"
+    quality={75}
+    widths={[400, 600, 800]}
+    sizes="(max-width: 768px) 25vh, (max-width: 1024px) 35vh, 25vw"
   />
 
   <!-- Ellipses colorées derrière la fleur gauche -->
@@ -94,13 +99,17 @@ import TypingAnimation from "./TypingAnimation.astro";
   </div>
 
   <!-- Fleur droite -->
-  <img
-    src={fleur_droite.src}
+  <Image
+    src={fleur_droite}
     alt=""
     aria-hidden="true"
     class="absolute right-0 bottom-0 w-[25vh] h-[30vh] md:w-[35vh] md:h-[45dvh] lg:w-[30dvw] lg:h-[37dvw] object-cover opacity-100 z-10"
     loading="eager"
     decoding="async"
+    format="webp"
+    quality={75}
+    widths={[400, 600, 800]}
+    sizes="(max-width: 768px) 25vh, (max-width: 1024px) 35vh, 30vw"
   />
 
   <!-- Scroll indicator -->
@@ -139,7 +148,7 @@ import TypingAnimation from "./TypingAnimation.astro";
     </h1>
     <div class="w-3/4 md:w-full h-px bg-white mb-8"></div>
     <p
-      class="font-extralight tracking-wider mb-16 md:mb-32 lg:mb-64 lg:!text-[20px] !text-[16px] md:!text-[18px]"
+      class="font-extralight tracking-wider mb-16 md:mb-32 lg:mb-64 lg:text-[20px]! text-[16px]! md:text-[18px]!"
     >
       PORTFOLIO
     </p>
