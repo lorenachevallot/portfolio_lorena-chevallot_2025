@@ -11,8 +11,7 @@ interface Props {
 
 const {
   title = "Loréna Chevallot, communicante digitale",
-  description =
-    "Portfolio de Loréna Chevallot, communicante digitale basée en Bourgogne-Franche-Comté, entre Belfort, Montbéliard et Besançon, spécialisée en stratégie de communication, rédaction web, réseaux sociaux, création de contenus, identité éditoriale, projets associatifs et montage vidéo.",
+  description = "Portfolio de Loréna Chevallot, communicante digitale basée en Bourgogne-Franche-Comté, entre Belfort, Montbéliard et Besançon, spécialisée en stratégie de communication, rédaction web, réseaux sociaux, création de contenus, identité éditoriale, projets associatifs et montage vidéo.",
   image = "/logo.png",
 } = Astro.props;
 
@@ -20,6 +19,37 @@ const canonicalURL = new URL(
   Astro.url.pathname,
   Astro.site || "https://portfolio.lorena-chevallot.fr"
 );
+
+// Données structurées JSON-LD
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Loréna Chevallot",
+  url: canonicalURL.href,
+  description:
+    "Communicante digitale basée en Bourgogne-Franche-Comté, entre Belfort, Montbéliard et Besançon, spécialisée en stratégie de communication, rédaction web, réseaux sociaux, création de contenus, identité éditoriale, projets associatifs et montage vidéo.",
+  jobTitle: "Communicante digitale",
+  alumniOf: [
+    "BUT Métiers du Multimédia et de l'Internet (MMI) - IUT de Montbéliard",
+  ],
+  knowsAbout: [
+    "Communication digitale",
+    "Stratégie de communication",
+    "Communication locale en Bourgogne-Franche-Comté",
+    "Communication digitale à Belfort",
+    "Communication digitale à Montbéliard",
+    "Communication digitale à Besançon",
+    "Création de contenus",
+    "Rédaction web",
+    "Réseaux sociaux",
+    "Identité éditoriale",
+    "Identité visuelle",
+    "Montage vidéo",
+    "Projets associatifs",
+    "Projets solidaires",
+    "Communication pour associations",
+  ],
+};
 ---
 
 <!doctype html>
@@ -94,41 +124,7 @@ const canonicalURL = new URL(
     <meta name="theme-color" content="#000000" />
 
     <!-- Données structurées : profil de Loréna en tant que communicante digitale -->
-    <script type="application/ld+json">
-      {JSON.stringify(
-        {
-          "@context": "https://schema.org",
-          "@type": "Person",
-          name: "Loréna Chevallot",
-          url: canonicalURL.href,
-          description:
-            "Communicante digitale basée en Bourgogne-Franche-Comté, entre Belfort, Montbéliard et Besançon, spécialisée en stratégie de communication, rédaction web, réseaux sociaux, création de contenus, identité éditoriale, projets associatifs et montage vidéo.",
-          jobTitle: "Communicante digitale",
-          alumniOf: [
-            "BUT Métiers du Multimédia et de l’Internet (MMI) - IUT de Montbéliard"
-          ],
-          knowsAbout: [
-            "Communication digitale",
-            "Stratégie de communication",
-            "Communication locale en Bourgogne-Franche-Comté",
-            "Communication digitale à Belfort",
-            "Communication digitale à Montbéliard",
-            "Communication digitale à Besançon",
-            "Création de contenus",
-            "Rédaction web",
-            "Réseaux sociaux",
-            "Identité éditoriale",
-            "Identité visuelle",
-            "Montage vidéo",
-            "Projets associatifs",
-            "Projets solidaires",
-            "Communication pour associations"
-          ]
-        },
-        null,
-        2
-      )}
-    </script>
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
   <body class="bg-transparent overflow-x-hidden flex flex-col">
     <Header />
