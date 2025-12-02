@@ -1,26 +1,8 @@
 import PocketBase from "pocketbase";
 
-// Détection de l'environnement
-const isBrowser = typeof window !== "undefined";
 const PUBLIC_PB_URL = "https://portfolio.lorena-chevallot.fr";
-const INTERNAL_URL = "http://127.0.0.1:8090";
-const DEV_URL = "http://127.0.0.1:8090";
 
-const envUrl =
-  typeof process !== "undefined" && process.env?.POCKETBASE_URL
-    ? process.env.POCKETBASE_URL
-    : null;
-
-const isDevMode =
-  typeof process !== "undefined" &&
-  (process.env?.NODE_ENV === "development" ||
-    process.env?.ASTRO_BUILDTIME === "false");
-
-const baseUrl = isBrowser
-  ? PUBLIC_PB_URL
-  : envUrl || (isDevMode ? DEV_URL : INTERNAL_URL);
-
-const pb = new PocketBase(baseUrl);
+const pb = new PocketBase(PUBLIC_PB_URL);
 
 export default pb;
 
@@ -99,8 +81,7 @@ export async function getLogicielsDetails(projet) {
 
 export function getImageUrl(collectionId, recordId, filename) {
   if (!filename) return null;
-  const fileBaseUrl = isDevMode ? DEV_URL : PUBLIC_PB_URL;
-  return `${fileBaseUrl}/api/files/${collectionId}/${recordId}/${filename}?token=`;
+  return `${PUBLIC_PB_URL}/api/files/${collectionId}/${recordId}/${filename}?token=`;
 }
 
 export function getImageUrlWithCache(
@@ -110,24 +91,21 @@ export function getImageUrlWithCache(
   updated
 ) {
   if (!filename) return null;
-  const fileBaseUrl = isDevMode ? DEV_URL : PUBLIC_PB_URL;
   const timestamp = updated ? new Date(updated).getTime() : Date.now();
-  return `${fileBaseUrl}/api/files/${collectionId}/${recordId}/${filename}?token=&t=${timestamp}`;
+  return `${PUBLIC_PB_URL}/api/files/${collectionId}/${recordId}/${filename}?token=&t=${timestamp}`;
 }
 
 export function getFileUrl(record, fieldName) {
   if (!record || !record[fieldName]) return null;
-  const fileBaseUrl = isDevMode ? DEV_URL : PUBLIC_PB_URL;
-  return `${fileBaseUrl}/api/files/${record.collectionId}/${record.id}/${record[fieldName]}?token=`;
+  return `${PUBLIC_PB_URL}/api/files/${record.collectionId}/${record.id}/${record[fieldName]}?token=`;
 }
 
 export function getFileUrlWithCache(record, fieldName) {
   if (!record || !record[fieldName]) return null;
-  const fileBaseUrl = isDevMode ? DEV_URL : PUBLIC_PB_URL;
   const timestamp = record.updated
     ? new Date(record.updated).getTime()
     : Date.now();
-  return `${fileBaseUrl}/api/files/${record.collectionId}/${record.id}/${record[fieldName]}?token=&t=${timestamp}`;
+  return `${PUBLIC_PB_URL}/api/files/${record.collectionId}/${record.id}/${record[fieldName]}?token=&t=${timestamp}`;
 }
 
 export function formatTypoName(typoName) {
